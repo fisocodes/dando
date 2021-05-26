@@ -1,0 +1,16 @@
+.about
+{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 3rem;
+    font-size: 1.5rem;
+    color: darkslategrey;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.about > p
+{
+    text-align: justify;
+}

@@ -1,0 +1,25 @@
+.uploadForm{
+    padding: 2rem;
+    background-color: darkslateblue;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.uploadForm .textForm{
+    width: 100%;
+    border-radius: 1rem;
+    border-style: none;
+    background-color: white;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.uploadForm .textForm:focus{
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+}
+.uploadForm .fileButton{
+    border-radius: 1rem;
+    background-color: white;
+}

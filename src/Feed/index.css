@@ -1,0 +1,58 @@
+.feedContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:flex-start;
+    margin: auto;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.feedDiv{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    min-width: 45%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 90vh;
+}
+::-webkit-scrollbar{
+    width: 0;
+}
+
+.timeDiv{
+    min-width: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatDiv{
+    min-width: 25%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 320px)
+{
+    .feedContainer{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .timeDiv{
+        min-width: 25%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 768px)
+{
+    .feedContainer{
+        flex-direction: row;
+    }
+} 

@@ -1,0 +1,72 @@
+html
+{
+    scroll-behavior: smooth;
+}
+
+body
+{
+    margin: 0px;
+    scroll-behavior: smooth;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.arrowContainer
+{
+    position: sticky;
+    float: right;
+    bottom: 1rem;
+    right: 1rem;
+    display: none;
+}
+
+.arrowContent
+{
+    max-height: 0;
+    max-width: 0;
+    line-height: 0;
+    position: relative;
+    margin: 0;
+    font-family: LittleMiracles;
+    transform: rotate(-90deg);
+    color: White;
+    background-color: DarkSlateBlue;
+    border-radius: 5rem;
+    padding: 1.5rem;
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+footer
+{
+    min-height: 5rem;
+    background-image: url("../image/stars.png");
+    background-size: 25em;
+}
+
+@media only screen and (min-width: 320px)
+{
+    .statistics table
+    {
+        min-width: 80%;
+    }
+}
+
+@media only screen and (min-width: 768px)
+{
+    .statistics table
+    {
+        min-width: 40%;
+    }
+}  
+
+@font-face
+{
+    font-family: LittleMiracles;
+    src: url("../fonts/LittleMiracles.ttf");
+}

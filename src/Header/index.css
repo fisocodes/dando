@@ -1,0 +1,56 @@
+header
+{
+    color: White;
+    font-family: LittleMiracles;
+    background-color: DarkSlateBlue;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1
+{
+    font-size: 10rem;
+    z-index: 2;
+}
+
+header h2
+{
+    font-size: 2rem;
+    z-index: 2;
+}
+
+.pointer
+{
+    position: relative;
+    transform: rotate(90deg);
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+.pointer a, .arrowContent a
+{
+    color: White;
+    text-decoration: none;
+}
+
+@keyframes floating
+{
+    from{top:-30px;}
+    to{top:-0px;}
+}
+
+@font-face
+{
+    font-family: LittleMiracles;
+    src: url("../fonts/LittleMiracles.ttf");
+}
