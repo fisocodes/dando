@@ -36,7 +36,7 @@ class Clock extends Component{
     }
 
     componentDidUpdate(){
-        if(this.state.seconds == 60){
+        if(this.state.seconds === 60){
             this.setState({
                 minutes: this.state.minutes + 1,
                 seconds: 0,
@@ -44,14 +44,14 @@ class Clock extends Component{
             });
         }
 
-        if(this.state.minutes == 60){
+        if(this.state.minutes === 60){
             this.setState({
                 hour: this.state.hour + 1,
                 minutes: 0
             });
         }
 
-        if(this.state.hour == 24){
+        if(this.state.hour === 24){
             this.setState({
                 hour: 0
             });
