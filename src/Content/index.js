@@ -3,16 +3,13 @@ import React, {Component} from 'react';
 import './index.css';
 
 class Content extends Component{
-    constructor(props){
-        super(props)
-    }
-
+    
     render(){
         return(
             <div className='content'>
                 <div className='contentHeader'>
                     <div className='avatar'>
-                        <img src={this.props.userpic} alt='Profile picture' className='userPic'/>
+                        <img src={this.props.userpic} alt='Profile' className='userPic'/>
                         <div className='userName'>
                             {this.props.username}
                         </div>
@@ -29,7 +26,7 @@ class Content extends Component{
                         </div>
                     : null}
                     {this.props.dataimage ?
-                        <img src={this.props.dataimage} alt='Content image' className='contentDataImage'/>
+                        <img src={this.props.dataimage} alt='Content' className='contentDataImage'/>
                     :null}
                     {this.props.datavideo ?
                         <video className='contentDataVideo' controls>
