@@ -6,7 +6,7 @@ class Uploader extends Component{
         return(
             <form className='uploadForm'>
                 <input className='textForm' type='text' placeholder='How is it going?'></input>
-                <input className='fileButton' type='file' accept='image/*,video/*'></input>
+                <input className='fileButton' type='file' accept='image/*,video/*' multiple></input>
             </form>
         );
     }
