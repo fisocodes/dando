@@ -62,7 +62,7 @@ class Clock extends Component{
         return(
             <div className='clockContainer'>
                 <h3>{this.props.location}</h3>
-                <h3>{this.state.hour} : {this.state.minutes} : {this.state.seconds}</h3>
+                <h1>{String(this.state.hour).padStart(2, '0')} : {String(this.state.minutes).padStart(2, '0')} : {String(this.state.seconds).padStart(2, '0')}</h1>
                 <h3>{this.state.day} {this.state.date}</h3>
             </div>
         );
