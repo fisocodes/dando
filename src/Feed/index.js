@@ -9,7 +9,6 @@ class Feed extends Component{
         return(
             <div className='feedContainer'>
                 <div className='timeDiv'>
-                    <h2>Time</h2>
                     <Clock location='Sydney' timezone='Australia/Sydney'/>
                     <Clock location='Ensenada' timezone='America/Tijuana'/>
                 </div>
