@@ -13,11 +13,7 @@
     min-width: 45%;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
     max-height: 90vh;
-}
-::-webkit-scrollbar{
-    width: 0;
 }
 
 .timeDiv{
@@ -41,8 +37,8 @@
         justify-content: center;
     }
 
-    .feedDiv{
-        overflow: visible;
+    .chatDiv{
+        display: none;
     }
 }
 
