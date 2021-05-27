@@ -22,4 +22,25 @@
 .uploadForm .fileButton{
     border-radius: 1rem;
     background-color: white;
+    z-index: -1;
+    position: absolute;
+}
+
+.uploadForm .inputButtonLabel{
+    color: white;
+    border-color: white;
+    border-style: solid;
+    border-width: 0.1rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+
+.uploadForm .inputButtonLabel:hover{
+    color: darkslateblue;
+    border-color: white;
+    background-color: white;
+    border-style: solid;
+    border-width: 0.1rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
 }
