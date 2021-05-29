@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Uploader from '../Uploader';
 import Clock from '../Clock';
 import Content from '../Content';
+import Weather from '../Weather';
 
 import './index.css';
 
@@ -11,7 +12,9 @@ class Feed extends Component{
             <div className='feedContainer'>
                 <div className='timeDiv'>
                     <Clock location='Sydney' timezone='Australia/Sydney'/>
+                    <Weather city='Cabramatta' country='AU'/>
                     <Clock location='Ensenada' timezone='America/Tijuana'/>
+                    <Weather city='Ensenada' country='MX'/>
                 </div>
                 <div className='feedDiv'>
                     <h2>Feed</h2>
@@ -23,7 +26,6 @@ class Feed extends Component{
                     </div>
                 </div>
                 <div className='chatDiv'>
-                    <h2>Chat</h2>
                 </div>
             </div>
         );
