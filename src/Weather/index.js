@@ -8,6 +8,7 @@ class Weather extends Component{
         super(props);
         this.state = {
             icon: '',
+            temperature: '',
             weather: ''
         }
     }
@@ -18,16 +19,19 @@ class Weather extends Component{
         console.log(responseJson);
         this.setState({
             icon: responseJson.data[0].weather.icon,
+            temperature: responseJson.data[0].temp,
             weather: responseJson.data[0].weather.description,
         });
     }
 
     render(){
         const iconSource = 'https://www.weatherbit.io/static/img/icons/' + this.state.icon + '.png';
+        const temperature = this.state.temperature + ' °C';
         return(
             <div className='weatherContainer'>
                 <h3>{this.props.city}</h3>
                 <img className='weatherIcon' alt='Weather Icon' src={iconSource}/>
+                <h5>{temperature}</h5>
                 <h3>{this.state.weather}</h3>
             </div>
         );
