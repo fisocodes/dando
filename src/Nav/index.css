@@ -1,4 +1,4 @@
-nav
+.navBar
 {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -15,7 +15,7 @@ nav
     transition: 0.5s;
 }
 
-.navLogo
+.navBar .navLogo
 {
     color: DarkSlateBlue;
     font-family: LittleMiracles;
@@ -23,7 +23,7 @@ nav
     padding-left: 1rem;
 }
 
-nav li
+.navBar li
 {
     font-size: 0.75rem;
     margin: 1rem;
@@ -36,7 +36,7 @@ nav li
     border-radius: 0.5rem;
 }
 
-nav li:hover
+.navBar li:hover
 {
     color: White;
     background-color: DarkSlateBlue;

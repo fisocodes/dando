@@ -15,7 +15,7 @@ class Landing extends Component
     {
         return(
             <React.Fragment>
-                <Login/>
+                <Login main={this.props.main}/>
                 <Nav/>
                 <Header/>
                 <About/>

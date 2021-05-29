@@ -8,13 +8,17 @@ class Nav extends Component
         super();
         this.clickLogin = this.clickLogin.bind(this);
         this.scrolledNav = this.scrolledNav.bind(this);
-        window.addEventListener("scroll", this.scrolledNav);
+        document.addEventListener("scroll", this.scrolledNav);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener('scroll', this.scrolledNav);
     }
 
     clickLogin()
     {
-        document.getElementsByClassName("loginForm")[0].style.display = "flex";
-        document.getElementsByClassName("loginForm")[0].style.animationName = "fadein";
+        document.getElementsByClassName("loginFormWrapper")[0].style.display = "flex";
+        document.getElementsByClassName("loginFormWrapper")[0].style.animationName = "fadein";
     }
 
     scrolledNav()

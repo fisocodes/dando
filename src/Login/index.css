@@ -1,4 +1,4 @@
-.loginForm
+.loginFormWrapper
 {
     position: fixed;
     z-index: 3;
@@ -13,10 +13,10 @@
     animation-duration: 0.5s;
 }
 
-form
+.loginForm
 {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 2rem;
+    font-size: 1rem;
     background-color: White;
     padding: 2rem;
     border-radius: 1rem;

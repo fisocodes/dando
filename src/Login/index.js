@@ -3,39 +3,45 @@ import './index.css';
 
 class Login extends Component
 {
-    constructor()
+    constructor(props)
     {
-        super();
+        super(props);
         this.exitLogin = this.exitLogin.bind(this);
         this.loginHandler = this.loginHandler.bind(this);
     }
 
     exitLogin(event)
     {
-        if(event.target === document.getElementsByClassName("loginForm")[0])
+        if(event.target === document.getElementsByClassName("loginFormWrapper")[0])
         {
-            document.getElementsByClassName("loginForm")[0].style.animationName = "fadeout";
-            setTimeout(() =>{document.getElementsByClassName("loginForm")[0].style.display = "none";}, 500);
+            document.getElementsByClassName("loginFormWrapper")[0].style.animationName = "fadeout";
+            setTimeout(() =>{document.getElementsByClassName("loginFormWrapper")[0].style.display = "none";}, 500);
         }
     }
 
     async loginHandler(event){
         event.preventDefault();
-        const url = '/users';
-        const response = await fetch(url);
-        let data = await response.text();
-        console.log(data);
-        alert(data);
+        const username = document.getElementById('userNameInput').value;
+        const password = document.getElementById('passwordInput').value;
+        const main = this.props.main;
+        
+        if((username === 'fiso' && password === 'sotooscar1') || (username === 'korraline' && password === 'puikuan8+')){
+            main.setState({
+                auth: true
+            });
+
+            console.log(main.state.auth);
+        }
     }
 
     render()
     {
         return(
-            <div className='loginForm' onClick={this.exitLogin}>
-                <form onSubmit={this.loginHandler}>
-                    <label>Login</label><br></br>
-                    <input type="text" placeholder="Username"/><br></br>
-                    <input type="password" placeholder="Password"/><br></br>
+            <div className='loginFormWrapper' onClick={this.exitLogin}>
+                <form className='loginForm' onSubmit={this.loginHandler}>
+                    <label className='loginLabel'>Login</label><br></br>
+                    <input id='userNameInput' type="text" name='username' placeholder="Username"/><br></br>
+                    <input id='passwordInput' type="password" nasme='password' placeholder="Password"/><br></br>
                     <input type="submit"/>
                 </form>
             </div>
