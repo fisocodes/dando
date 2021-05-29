@@ -27,7 +27,7 @@ class Weather extends Component{
         return(
             <div className='weatherContainer'>
                 <h3>{this.props.city}</h3>
-                <img className='weatherIcon' src={iconSource}/>
+                <img className='weatherIcon' alt='Weather Icon' src={iconSource}/>
                 <h3>{this.state.weather}</h3>
             </div>
         );
