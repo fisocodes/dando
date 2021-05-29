@@ -13,7 +13,7 @@ class Weather extends Component{
     }
 
     async componentDidMount(){
-        const response = await fetch('http://api.weatherbit.io/v2.0/current?city=' + this.props.city + '&country='  + this.props.country + '&key=686c003b089b4468bc5fe1bc22d8ec49');
+        const response = await fetch('https://api.weatherbit.io/v2.0/current?city=' + this.props.city + '&country='  + this.props.country + '&key=686c003b089b4468bc5fe1bc22d8ec49');
         const responseJson = await response.json();
         console.log(responseJson);
         this.setState({
