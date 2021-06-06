@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import Uploader from '../Uploader';
-import Clock from '../Clock';
 import Content from '../Content';
-import Weather from '../Weather';
 
 import './index.css';
 
