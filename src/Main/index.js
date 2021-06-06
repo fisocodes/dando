@@ -3,6 +3,10 @@ import {Switch, Route, NavLink} from 'react-router-dom';
 import Star from '../Star';
 import Feed from '../Feed';
 import Landing from '../Landing';
+import Widget from '../Widget';
+import Clock from '../Clock';
+import Weather from '../Weather';
+
 
 import './index.css'
 
@@ -38,6 +42,8 @@ class Main extends Component{
                             <li><NavLink to='/stats'><i className='material-icons'>bar_chart</i></NavLink></li>
                         </ul>
                     </nav>
+                    <Widget top="10rem" content={[<Clock location="Sydney" timezone="Australia/Sydney"/>, <Clock location="Ensenada" timezone="America/Tijuana"/>]}/>
+                    <Widget top="15rem" content={[<Weather city='Cabramatta' country='AU'/>, <Weather city='Ensenada' country='MX'/>]}/>
                     <Switch>
                         <Route path='/user'>
                             <h1>USER</h1>
