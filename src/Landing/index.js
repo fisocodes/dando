@@ -6,6 +6,8 @@ import Arrow from '../Arrow';
 import Footer from '../Footer';
 import Data from '../Data';
 import About from '../About';
+import Clock from '../Clock';
+import Weather from '../Weather';
 
 import './index.css'
 
@@ -19,13 +21,21 @@ class Landing extends Component
                 <Nav/>
                 <Header/>
                 <About/>
+                <div className="timeDiv">
+                    <Clock location="Sydney" timezone="Australia/Sydney"/>
+                    <Clock location="Ensenada" timezone="America/Tijuana"/>
+                </div>
+                <div className="weatherDiv">
+                    <Weather city='Cabramatta' country='AU'/>
+                    <Weather city='Ensenada' country='MX'/>
+                </div>
                 <div id='statistics' className='statistics'>
-                    <Data icon='./messages.png' icondesc='Messages icon' title='Messages' quantity='142252'/>
-                    <Data icon='./calls.png' icondesc='Calls icon' title='Calls' quantity='45636'/>
-                    <Data icon='./photos.png' icondesc='Photos icon' title='Photos' quantity='13421'/>
-                    <Data icon='./videos.png' icondesc='Videos icon' title='Videos' quantity='69675'/>
-                    <Data icon='./posts.png' icondesc='Posts icon' title='Posts' quantity='24634'/>
-                    <Data icon='./total.png' icondesc='Total icon' title='Total stuff' quantity='32535'/>
+                    <Data icon='question_answer' icondesc='Messages icon' title='Messages' quantity='142252'/>
+                    <Data icon='call' icondesc='Calls icon' title='Calls' quantity='45636'/>
+                    <Data icon='image' icondesc='Photos icon' title='Photos' quantity='13421'/>
+                    <Data icon='play_arrow' icondesc='Videos icon' title='Videos' quantity='69675'/>
+                    <Data icon='article' icondesc='Posts icon' title='Posts' quantity='24634'/>
+                    <Data icon='leaderboard' icondesc='Total icon' title='Total stuff' quantity='32535'/>
                 </div>
                 <Arrow/>
                 <Footer/>

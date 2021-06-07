@@ -42,8 +42,8 @@ class Main extends Component{
                             <li><NavLink to='/stats'><i className='material-icons'>bar_chart</i></NavLink></li>
                         </ul>
                     </nav>
-                    <Widget top="10rem" content={[<Clock location="Sydney" timezone="Australia/Sydney"/>, <Clock location="Ensenada" timezone="America/Tijuana"/>]}/>
-                    <Widget top="15rem" content={[<Weather city='Cabramatta' country='AU'/>, <Weather city='Ensenada' country='MX'/>]}/>
+                    <Widget icon="watch_later" top="10rem" content={[<Clock location="Sydney" timezone="Australia/Sydney"/>, <Clock location="Ensenada" timezone="America/Tijuana"/>]}/>
+                    <Widget icon="cloud" top="15rem" content={[<Weather city='Cabramatta' country='AU'/>, <Weather city='Ensenada' country='MX'/>]}/>
                     <Switch>
                         <Route path='/user'>
                             <h1>USER</h1>

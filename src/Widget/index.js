@@ -30,9 +30,12 @@ class Widget extends Component{
         return(
             <div className={this.state.class} onClick={this.toggleWidget} style={{top: this.props.top}}>
                 <div className='widgetWrapper'>
-                    {this.props.content.map(function(element){
-                        return element;
-                    })}
+                    {this.state.class !== 'widgetContainerClosed' ?
+                         this.props.content.map(function(element){
+                            return element;
+                        }) :
+                        <i className='material-icons'>{this.props.icon}</i>
+                   }
                 </div>
             </div>
         );

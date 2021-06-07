@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    color: DarkSlateGray;
+    color: #FAFAFA;
 }
 
 .statistics table
@@ -29,7 +29,7 @@
     float: left;
     top: 1.25rem;
     left: 1rem;
-    background-color: White;
+    background-color: #263238;
     padding: 0.5rem;
 }
 
@@ -38,18 +38,22 @@
     float: left;
     margin-right: 0.5rem;
     max-height: 1.5rem;
-    background-color: White;
+    background-color: #263238;
 }
 
 .statistics table td
 {
     padding: 2rem;
     text-align: center;
-    color: DarkSlateBlue;
+    color: #7E57C2;
     font-size: 1.5rem;
     letter-spacing: 0.5rem;
-    border: 0.15rem solid DarkSlateGray;
+    border: 0.15rem solid #FAFAFA;
     border-radius: 0.5rem;;
+}
+
+.dataIcon{
+    margin-right: 0.5rem;
 }
 
 @keyframes streching

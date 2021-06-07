@@ -45,7 +45,7 @@ class Data extends Component
             <table className='dataTable'>
                 <tr>
                     <th>
-                        <img src={this.props.icon} alt={this.props.icondesc}></img>
+                        <i className='material-icons dataIcon'>{this.props.icon}</i>
                         {this.props.title}
                     </th>
                 </tr>
