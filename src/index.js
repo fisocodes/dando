@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter} from 'react-router-dom';
 import ReactDom from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
@@ -15,9 +15,9 @@ class App extends Component
         return(
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <BrowserRouter>
+                <HashRouter>
                     <Main/>
-                </BrowserRouter>  
+                </HashRouter>  
             </ThemeProvider>
         );
     }
