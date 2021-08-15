@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Paper } from '@material-ui/core';
 
 import './index.css';
 
@@ -27,12 +28,12 @@ class Weather extends Component{
         const iconSource = 'https://www.weatherbit.io/static/img/icons/' + this.state.icon + '.png';
         const temperature = this.state.temperature + ' °C';
         return(
-            <div className='weatherContainer'>
+            <Paper className='weatherContainer'>
                 <h3>{this.props.city}</h3>
                 <img className='weatherIcon' alt='Weather Icon' src={iconSource}/>
                 <h5>{temperature}</h5>
                 <h3>{this.state.weather}</h3>
-            </div>
+            </Paper>
         );
     }
 }

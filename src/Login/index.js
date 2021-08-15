@@ -44,6 +44,7 @@ class Login extends Component
                     <input id='passwordInput' type="password" nasme='password' placeholder="Password"/><br></br>
                     <input type="submit"/>
                 </form>
+                <a href="/sign-up">Sign Up</a>
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Paper } from '@material-ui/core';
 
 import './index.css';
 
@@ -60,11 +61,11 @@ class Clock extends Component{
 
     render(){
         return(
-            <div className='clockContainer'>
+            <Paper className='clockContainer'>
                 <h3>{this.props.location}</h3>
                 <h1>{String(this.state.hour).padStart(2, '0')} : {String(this.state.minutes).padStart(2, '0')} : {String(this.state.seconds).padStart(2, '0')}</h1>
                 <h3>{this.state.day} {this.state.date}</h3>
-            </div>
+            </Paper>
         );
     }
 }
