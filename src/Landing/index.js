@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import TabPanel from '@material-ui/lab/TabPanel';
-import TabContext from '@material-ui/lab/TabContext';
 import Accordion from '@material-ui/core/Accordion';
 import { AccordionDetails, AccordionSummary } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Header from '../Header';
-import Login from '../Login';
 import Data from '../Data';
 import About from '../About';
 import Clock from '../Clock';
