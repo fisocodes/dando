@@ -9,7 +9,7 @@ import About from '../About';
 import Clock from '../Clock';
 import Weather from '../Weather';
 
-import './index.css'
+import './index.css';
 
 class Landing extends Component
 {

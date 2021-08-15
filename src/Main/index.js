@@ -4,6 +4,7 @@ import { Tabs } from '@material-ui/core';
 import { Tab } from '@material-ui/core';
 
 import Landing from '../Landing';
+import Login from '../Login';
 
 class Main extends Component{
 
@@ -36,7 +37,7 @@ class Main extends Component{
                             <Landing/>
                         </Route>
                         <Route path='/log-in'>
-                            <h1>Log In</h1>
+                            <Login/>
                         </Route>
                         <Route path='/sign-up'>
                             <h1>Sign Up</h1>
