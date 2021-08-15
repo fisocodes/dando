@@ -68,7 +68,7 @@ class Landing extends Component
                         </Accordion>
                         <Accordion>
                             <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
-                                <h2>Statistics</h2>
+                                <h2>Overview</h2>
                             </AccordionSummary>
                             <AccordionDetails className="statistics">
                                 <Data icon='question_answer' icondesc='Messages icon' title='Messages' quantity='142252'/>
