@@ -17,7 +17,6 @@ class Signup extends Component
                         <TextField className="form-input" label="Name" size="medium" color="secondary"/><br></br>
                         <TextField className="form-input" label="Surname" size="medium" color="secondary"/><br></br>
                         <TextField className="form-input" type="date" size="medium" color="secondary"/><br></br>
-                        <TextField className="form-input" type="file" size="medium" color="secondary"/><br></br>
                         <Button className="form-input" type="submit" variant="contained" color="primary">Log In</Button>
                     </form>
                 </Paper>
