@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Link} from 'react-router-dom';
+import { Tabs } from '@material-ui/core';
+import { Tab } from '@material-ui/core';
 
 import Landing from '../Landing';
 
@@ -9,14 +11,38 @@ class Main extends Component{
         super();
         this.state = {
             auth: false,
+            value: "0",
         };
+    }
+
+    setValue = (event, newValue) => {
+        this.setState({
+            value: newValue,
+        });
     }
     
 
     render(){
         if(!this.state.auth){
             return(
-                <Landing/>   
+                <React.Fragment>
+                    <Tabs value={this.state.value} onChange={this.setValue} centered>        
+                        <Tab value="0" label="Overview" component={Link} to='/overview'/>
+                        <Tab value="1" label="Log In" component={Link} to='/log-in'/>
+                        <Tab value="2" label="Sign Up" component={Link} to='/sign-up'/>    
+                    </Tabs>
+                    <Switch>
+                        <Route path='/overview'>
+                            <Landing/>
+                        </Route>
+                        <Route path='/log-in'>
+                            <h1>Log In</h1>
+                        </Route>
+                        <Route path='/sign-up'>
+                            <h1>Sign Up</h1>
+                        </Route>
+                    </Switch>
+                </React.Fragment>  
             );
         }
         else{
