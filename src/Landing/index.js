@@ -40,9 +40,9 @@ class Landing extends Component
             <React.Fragment>
                 <TabContext value={this.state.value}>
                     <Tabs value={this.state.value} onChange={this.setValue} centered>        
-                        <Tab value="0" label="Statistics"/>
+                        <Tab value="0" label="Overview"/>
                         <Tab value="1" label="Log In"/>
-                        <Tab value="2" label="SignUp"/>    
+                        <Tab value="2" label="Sign Up"/>    
                     </Tabs>
                     <TabPanel value="0">
                         <Login main={this.props.main}/>
