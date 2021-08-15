@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import {Switch, Route, Link, Redirect} from 'react-router-dom';
 import { Tabs } from '@material-ui/core';
 import { Tab } from '@material-ui/core';
 
@@ -40,6 +40,9 @@ class Main extends Component{
                         </Route>
                         <Route path='/sign-up'>
                             <h1>Sign Up</h1>
+                        </Route>
+                        <Route path='/'>
+                            <Redirect to='/overview'/>
                         </Route>
                     </Switch>
                 </React.Fragment>  
