@@ -9,7 +9,7 @@ const theme = createTheme({
     palette: {
         type: 'dark',
         primary: {
-          main: deepPurple[700],
+          main: deepPurple[500],
         },
         secondary: {
           main: amber[200],
