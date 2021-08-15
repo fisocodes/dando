@@ -25,12 +25,13 @@
 
 .statistics table th
 {
+
     position: relative;
     float: left;
-    top: 1.25rem;
     left: 1rem;
-    background-color: #263238;
+    
     padding: 0.5rem;
+
 }
 
 .statistics table th img

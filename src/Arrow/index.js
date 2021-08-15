@@ -18,11 +18,11 @@ window.onscroll = function()
 {
     if(window.scrollY > 300)
     {
-        document.getElementsByClassName("arrowContainer")[0].style.display = "block";
+        //document.getElementsByClassName("arrowContainer")[0].style.display = "block";
     }
     else
     {
-        document.getElementsByClassName("arrowContainer")[0].style.display = "none";
+        //document.getElementsByClassName("arrowContainer")[0].style.display = "none";
     }
 }
 
