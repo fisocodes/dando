@@ -12,8 +12,8 @@ class Login extends Component
                 <Paper className="login-paper">
                     <form className='login-form'>
                         <label className="form-input">Login</label>
-                        <TextField className="form-input" autofocus label="Username" size="medium"/><br></br>
-                        <TextField className="form-input" type="password" autofocus label="Password" size="medium"/><br></br>
+                        <TextField className="form-input" autofocus label="Username" size="medium" color="secondary"/><br></br>
+                        <TextField className="form-input" type="password" autofocus label="Password" size="medium" color="secondary"/><br></br>
                         <Button className="form-input" variant="contained" color="primary">Log In</Button>
                     </form>
                 </Paper>
