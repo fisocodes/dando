@@ -50,7 +50,7 @@ class Data extends Component
     render()
     {
         return(
-            <VisibilitySensor onChange={this.showData} offset={{top: 20, bottom: 20}}>
+            <VisibilitySensor onChange={this.showData} offset={{top: -20, bottom: -20}}>
                 <table className='dataTable'>
                     <tr>
                         <th>
