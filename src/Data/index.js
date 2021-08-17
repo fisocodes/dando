@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import CountUp from 'react-countup';
+import VisibilitySensor from 'react-visibility-sensor';
+
 import './index.css';
 
 class Data extends Component
@@ -8,11 +11,16 @@ class Data extends Component
         super();
         this.isInViewport = this.isInViewport.bind(this);
         this.showData = this.showData.bind(this);
-        window.addEventListener("scroll", this.showData);
+        this.state = {
+            isVisible: false,
+        }
     }
 
-    showData()
+    showData(isVisible)
     {
+        this.setState({
+            isVisible: isVisible ? true : false,
+        });
         let datas = document.getElementsByClassName("dataTable");
 
         for(let i=0; i<datas.length; i++)
@@ -42,17 +50,23 @@ class Data extends Component
     render()
     {
         return(
-            <table className='dataTable'>
-                <tr>
-                    <th>
-                        <i className='material-icons dataIcon'>{this.props.icon}</i>
-                        {this.props.title}
-                    </th>
-                </tr>
-                <tr>
-                    <td>{this.props.quantity}</td>
-                </tr>  
-            </table>
+            <VisibilitySensor onChange={this.showData}>
+                <table className='dataTable'>
+                    <tr>
+                        <th>
+                            <i className='material-icons dataIcon'>{this.props.icon}</i>
+                            {this.props.title}
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                        {   
+                            this.state.isVisible ? <CountUp end={this.props.quantity}  duration={Math.random() * 4 + 1}/> : null  
+                        }
+                        </td>
+                    </tr>  
+                </table>
+            </VisibilitySensor>
         );
     }
 }

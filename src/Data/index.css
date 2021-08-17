@@ -53,12 +53,6 @@
     border-radius: 0.5rem;;
 }
 
-.dataIcon{
+.data-icon{
     margin-right: 0.5rem;
-}
-
-@keyframes streching
-{
-    from{transform: scale(0.0);}
-    to{transform: scale(1.0);}
 }
