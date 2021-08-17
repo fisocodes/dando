@@ -50,7 +50,7 @@ class Data extends Component
     render()
     {
         return(
-            <VisibilitySensor onChange={this.showData} offset={{top: -20, bottom: -20}}>
+            <VisibilitySensor onChange={this.showData} offset={{top: 0, bottom: 0}}>
                 <table className='dataTable'>
                     <tr>
                         <th>
@@ -60,9 +60,7 @@ class Data extends Component
                     </tr>
                     <tr>
                         <td>
-                        {   
-                            this.state.isVisible ? <CountUp end={this.props.quantity}  duration={Math.random() * 4 + 1}/> : null  
-                        }
+                            <CountUp end={this.props.quantity}  duration={Math.random() * 4 + 1} start={!this.state.isVisible ? () => {} : null}/>  
                         </td>
                     </tr>  
                 </table>
