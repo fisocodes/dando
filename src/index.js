@@ -5,8 +5,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 
 import theme from './Theme';
-import './index.css';
 import Main from './Main';
+
+import './index.css';
 
 class App extends Component
 {

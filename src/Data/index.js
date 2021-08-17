@@ -12,18 +12,19 @@ class Data extends Component
         this.showData = this.showData.bind(this);
         this.state = {
             isVisible: false,
-            isMounted: false,
             visibleClass: 'fade-out',
+            duration: Math.random() * 3 + 1,
         }
     }
 
     showData(isVisible)
     {
-        this.setState({
-            isVisible: !isVisible,
-            isMounted: true,
-            visibleClass: isVisible ? 'fade-in' : 'fade-out',
-        });
+        this.setState(
+            {
+                isVisible: !isVisible,
+                visibleClass: isVisible ? 'fade-in' : 'fade-out',
+            }
+        );
     }
 
     render()
@@ -33,13 +34,13 @@ class Data extends Component
                 <table className={'dataTable ' + this.state.visibleClass}>
                     <tr>
                         <th>
-                            <i className='material-icons dataIcon'>{this.props.icon}</i>
+                            <i className='material-icons data-icon'>{this.props.icon}</i>
                             {this.props.title}
                         </th>
                     </tr>
                     <tr>
                         <td>
-                            <CountUp end={this.props.quantity} duration={Math.random() * 3 + 1} start={this.state.isVisible && !this.state.isMounted ? () => {} : null}/>  
+                            <CountUp end={this.props.quantity} separator="," duration={this.state.duration} start={this.state.isVisible ? () => {}: null}/>  
                         </td>
                     </tr>  
                 </table>

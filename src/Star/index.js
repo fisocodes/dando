@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import './index.css';
 
 class Star extends Component
@@ -25,9 +26,7 @@ class Star extends Component
     render()
     {
         return(
-            <div className='starComponent'>
-
-            </div>
+            <div className='starComponent'></div>
         );
     }
 }
