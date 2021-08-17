@@ -12,6 +12,7 @@ class Data extends Component
         this.showData = this.showData.bind(this);
         this.state = {
             isVisible: false,
+            countedTimes: 0,
             visibleClass: 'fade-out',
             duration: Math.random() * 3 + 1,
         }
@@ -19,12 +20,12 @@ class Data extends Component
 
     showData(isVisible)
     {
-        this.setState(
-            {
+        this.setState((prevState) => {
+            return{
                 isVisible: !isVisible,
                 visibleClass: isVisible ? 'fade-in' : 'fade-out',
             }
-        );
+        });
     }
 
     render()
@@ -40,7 +41,7 @@ class Data extends Component
                     </tr>
                     <tr>
                         <td>
-                            <CountUp end={this.props.quantity} separator="," duration={this.state.duration} start={this.state.isVisible ? () => {}: null}/>  
+                            <CountUp end={this.props.quantity} redraw={false} preserveValue separator="," duration={this.state.duration} start={this.state.isVisible ? () => {} : null}/>  
                         </td>
                     </tr>  
                 </table>

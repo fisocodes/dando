@@ -1,9 +1,9 @@
 .starComponent
 {
     background-image: url("../image/stars.png");
-    background-size: 2.5rem;
-    min-width: 40px;
-    min-height: 40px;
+    background-size: 1.25rem;
+    min-width: 20px;
+    min-height: 20px;
     position: absolute;
     animation-name: blink;
     animation-iteration-count: infinite;

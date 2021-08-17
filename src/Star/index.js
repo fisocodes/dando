@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Plx from 'react-plx';
 
 import './index.css';
 
@@ -25,8 +26,24 @@ class Star extends Component
 
     render()
     {
+        const parallaxData = [
+            {
+              start: 0,
+              end: 1000,
+              properties: [
+                {
+                  startValue: 0,
+                  endValue: -Math.random() * 1000,
+                  property: 'translateY',
+                },
+              ],
+            },
+          ];
+
         return(
-            <div className='starComponent'></div>
+            <Plx className='starComponent' parallaxData={parallaxData}>
+                <div ></div>
+            </Plx>
         );
     }
 }
