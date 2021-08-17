@@ -9,49 +9,28 @@ class Data extends Component
     constructor()
     {
         super();
-        this.isInViewport = this.isInViewport.bind(this);
         this.showData = this.showData.bind(this);
         this.state = {
             isVisible: false,
+            isMounted: false,
+            visibleClass: 'fade-out',
         }
     }
 
     showData(isVisible)
     {
         this.setState({
-            isVisible: isVisible ? true : false,
+            isVisible: !isVisible,
+            isMounted: true,
+            visibleClass: isVisible ? 'fade-in' : 'fade-out',
         });
-        let datas = document.getElementsByClassName("dataTable");
-
-        for(let i=0; i<datas.length; i++)
-        {
-            if(this.isInViewport(datas[i]))
-            {
-                datas[i].style.opacity = "1.0";
-            }
-            else
-            {
-                datas[i].style.opacity = "0.0";
-            }
-        }
-    }
-
-    isInViewport(element)
-    {
-        const rect = element.getBoundingClientRect();
-        return(
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
     }
 
     render()
     {
         return(
-            <VisibilitySensor onChange={this.showData} offset={{top: 0, bottom: 0}}>
-                <table className='dataTable'>
+            <VisibilitySensor partialVisibility onChange={this.showData}>
+                <table className={'dataTable ' + this.state.visibleClass}>
                     <tr>
                         <th>
                             <i className='material-icons dataIcon'>{this.props.icon}</i>
@@ -60,7 +39,7 @@ class Data extends Component
                     </tr>
                     <tr>
                         <td>
-                            <CountUp end={this.props.quantity}  duration={Math.random() * 4 + 1} start={!this.state.isVisible ? () => {} : null}/>  
+                            <CountUp end={this.props.quantity} duration={Math.random() * 3 + 1} start={this.state.isVisible && !this.state.isMounted ? () => {} : null}/>  
                         </td>
                     </tr>  
                 </table>
