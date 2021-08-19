@@ -1,16 +1,19 @@
-.starComponent
+.star-component
 {
     background-image: url("../image/stars.png");
-    background-size: 1.25rem;
-    min-width: 20px;
-    min-height: 20px;
-    position: absolute;
+    background-size: 1.25rem; 
     animation-name: blink;
     animation-iteration-count: infinite;
     animation-duration: 2s;
     animation-direction: alternate;
     overflow: hidden;
-    opacity: 0.0;
+    opacity: 1.0;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.star-wrapper{  
+    position: absolute;
 }
 
 @keyframes blink
