@@ -30,7 +30,7 @@ class Star extends Component
     {
       const starStyle = {
         animationDelay: `${Math.random() * 8}s`,
-        animationDuration: 2 + Math.random() * 8,
+        animationDuration: `${2 + Math.random() * 8}s`,
 
       }
 

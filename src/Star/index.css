@@ -7,7 +7,7 @@
     animation-duration: 2s;
     animation-direction: alternate;
     overflow: hidden;
-    opacity: 1.0;
+    opacity: 0.0;
     min-width: 20px;
     min-height: 20px;
 }
