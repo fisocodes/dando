@@ -3,6 +3,7 @@ import { Paper, TextField, Button } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
 import { CircularProgress} from '@material-ui/core';
 import { CheckCircle } from '@material-ui/icons';
+import { Redirect } from 'react-router';
 
 import Axios from '../Axios';
 
@@ -22,12 +23,20 @@ class Signup extends Component
             dialogTitle: "Creating user",
             dialogContent: <CircularProgress color="secondary"/>,
             dialogActions: null,
+            isRedirec: false,
         }
     }
 
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value, 
+        });
+    }
+
+    handleOnClose = (event) => {
+        this.setState({
+            isCreateDialogOpen: false,
+            isRedirect: true,
         });
     }
 
@@ -51,7 +60,7 @@ class Signup extends Component
                 isCreateDialogOpen: true,
                 dialogTitle: response.data,
                 dialogContent: <CheckCircle color="secondary" fontSize="large"/>,
-                dialogActions: <Button variant="contained" color="primary">Noice</Button>
+                dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Noice</Button>,
             });
         })
         .catch(function(error){
@@ -62,6 +71,7 @@ class Signup extends Component
     render()
     {
         return(
+            this.state.isRedirect ? <Redirect to="/log-in"/> : 
             <div className='login-form-wrapper'>
                 <Dialog open={this.state.isCreateDialogOpen}>
                     <DialogTitle>{this.state.dialogTitle}</DialogTitle>

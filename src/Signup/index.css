@@ -16,6 +16,10 @@
     justify-content: center;
 }
 
+.MuiDialog-container {
+    transition: 1s;
+}
+
 .MuiDialog-paper, .MuiDialogTitle-root {
     display: flex;
     flex-direction: column;
@@ -24,4 +28,5 @@
     text-align: center;
     padding: 2rem;
     gap: 1rem;
+    transition: 0.5s;
 }
