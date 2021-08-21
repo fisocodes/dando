@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { Paper, TextField, Button } from '@material-ui/core';
-import { Dialog, DialogTitle } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
 import { CircularProgress} from '@material-ui/core';
+import { CheckCircle } from '@material-ui/icons';
+import { Redirect } from 'react-router';
 
 import Axios from '../Axios';
 
@@ -18,6 +20,9 @@ class Signup extends Component
             surname: "",
             dob: "",
             isCreateDialogOpen: false,
+            dialogTitle: "Creating user",
+            dialogContent: <CircularProgress color="secondary"/>,
+            dialogActions: null,
         }
     }
 
@@ -29,7 +34,6 @@ class Signup extends Component
 
     handleSubmit = (event) => {
         event.preventDefault();
-        alert(`USER DATA\nUsername: ${this.state.username}\nPassword: ${this.state.password}\nName: ${this.state.name}\nSurname: ${this.state.surname}\nDOB: ${this.state.dob}\n`);
 
         this.setState({
             isCreateDialogOpen: true,
@@ -45,10 +49,11 @@ class Signup extends Component
         .then((response) => {
             
             this.setState({
-                isCreateDialogOpen: false,
+                isCreateDialogOpen: true,
+                dialogTitle: response.data,
+                dialogContent: <CheckCircle color="secondary" fontSize="large"/>,
+                dialogActions: <Button variant="contained" color="primary">Noice</Button>
             });
-
-            alert(response.data);
         })
         .catch(function(error){
             console.log(error);
@@ -60,8 +65,11 @@ class Signup extends Component
         return(
             <div className='login-form-wrapper'>
                 <Dialog open={this.state.isCreateDialogOpen}>
-                    <DialogTitle>Creating user</DialogTitle>
-                    <CircularProgress color="secondary"/>
+                    <DialogTitle>{this.state.dialogTitle}</DialogTitle>
+                    {this.state.dialogContent}
+                    <DialogActions>
+                        {this.state.dialogActions}
+                    </DialogActions>
                 </Dialog>
                 <Paper className="login-paper">
                     <form className='login-form' onSubmit={this.handleSubmit}>
@@ -71,7 +79,7 @@ class Signup extends Component
                         <TextField name="name" onChange={this.handleChange} className="form-input" label="Name" size="medium" color="secondary"/><br></br>
                         <TextField name="surname" onChange={this.handleChange} className="form-input" label="Surname" size="medium" color="secondary"/><br></br>
                         <TextField name="dob" onChange={this.handleChange} className="form-input" type="date" label="DOB" size="medium" color="secondary"/><br></br>
-                        <Button className="form-input" type="submit" variant="contained" color="primary">Log In</Button>
+                        <Button className="form-input" type="submit" variant="contained" color="primary">Sign Up</Button>
                     </form>
                 </Paper>
             </div>
