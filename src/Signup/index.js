@@ -57,13 +57,17 @@ class Signup extends Component
         .then((response) => {
             
             this.setState({
-                isCreateDialogOpen: true,
                 dialogTitle: response.data,
                 dialogContent: <CheckCircle color="secondary" fontSize="large"/>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Noice</Button>,
             });
         })
-        .catch(function(error){
+        .catch((error) =>{
+            this.setState({
+                dialogTitle: "An error ocurred",
+                dialogContent: error.message,
+                dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Oh no</Button>,
+            });
             console.log(error);
         });
     }
