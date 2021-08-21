@@ -3,7 +3,6 @@ import { Paper, TextField, Button } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
 import { CircularProgress} from '@material-ui/core';
 import { CheckCircle } from '@material-ui/icons';
-import { Redirect } from 'react-router';
 
 import Axios from '../Axios';
 
