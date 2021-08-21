@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Paper, TextField, Button } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
 import { CircularProgress} from '@material-ui/core';
-import { CheckCircle } from '@material-ui/icons';
+import { CheckCircle, Error } from '@material-ui/icons';
 import { Redirect } from 'react-router';
 
 import Axios from '../Axios';
@@ -65,7 +65,7 @@ class Signup extends Component
         .catch((error) =>{
             this.setState({
                 dialogTitle: "An error ocurred",
-                dialogContent: error.message,
+                dialogContent: <div className="dialog-content"><Error color="secondary"/>{error.message}</div>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Oh no</Button>,
             });
             console.log(error);
@@ -75,7 +75,7 @@ class Signup extends Component
     render()
     {
         return(
-            this.state.isRedirect ? <Redirect to="/log-in"/> : 
+            this.state.isRedirect ? <Redirect to="/overview"/> : 
             <div className='login-form-wrapper'>
                 <Dialog open={this.state.isCreateDialogOpen}>
                     <DialogTitle>{this.state.dialogTitle}</DialogTitle>
