@@ -61,14 +61,16 @@ class Signup extends Component
                 dialogContent: <CheckCircle color="secondary" fontSize="large"/>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Noice</Button>,
             });
+
+            console.log(response);
         })
         .catch((error) =>{
             this.setState({
                 dialogTitle: "An error ocurred",
-                dialogContent: <div className="dialog-content"><Error color="secondary"/>{error.message}</div>,
+                dialogContent: <div className="dialog-content"><Error color="secondary"/>{error.response.data}</div>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Oh no</Button>,
             });
-            console.log(error);
+            console.log(error.response.data);
         });
     }
 
