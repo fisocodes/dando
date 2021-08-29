@@ -15,6 +15,7 @@ class Data extends Component
             countedTimes: 0,
             visibleClass: 'fade-out',
             duration: Math.random() * 3 + 1,
+            visibilityFires: 1,
         }
     }
 
@@ -24,6 +25,7 @@ class Data extends Component
             return{
                 isVisible: !isVisible,
                 visibleClass: isVisible ? 'fade-in' : 'fade-out',
+                visibilityFires: prevState.visibilityFires + 1,
             }
         });
     }
@@ -31,7 +33,7 @@ class Data extends Component
     render()
     {
         return(
-            <VisibilitySensor partialVisibility onChange={this.showData}>
+            <VisibilitySensor partialVisibility offset={{top:10, bottom:10}} onChange={this.showData}>
                 <table className={'dataTable ' + this.state.visibleClass}>
                     <tr>
                         <th>
@@ -41,7 +43,7 @@ class Data extends Component
                     </tr>
                     <tr>
                         <td>
-                            <CountUp end={this.props.quantity} redraw={false} preserveValue separator="," duration={this.state.duration} start={this.state.isVisible ? () => {} : null}/>  
+                            <CountUp end={this.props.quantity} redraw={false} separator="," duration={this.state.duration} start={this.state.isVisible && this.state.visibilityFires < 3 ? () => {} : null}/>  
                         </td>
                     </tr>  
                 </table>
