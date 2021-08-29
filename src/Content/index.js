@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Card } from '@material-ui/core';
 
 import './index.css';
 
@@ -6,7 +7,7 @@ class Content extends Component{
     
     render(){
         return(
-            <div className='content'>
+            <Card className='content'>
                 <div className='contentHeader'>
                     <div className='avatar'>
                         <img src={this.props.userpic} alt='Profile' className='userPic'/>
@@ -34,7 +35,7 @@ class Content extends Component{
                         </video>
                     :null}
                 </div>
-            </div>
+            </Card>
         );
     }
 }

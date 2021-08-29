@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import Accordion from '@material-ui/core/Accordion';
 import { AccordionDetails, AccordionSummary } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Carousel from 'react-material-ui-carousel';
 
 import Header from '../Header';
 import Data from '../Data';
 import About from '../About';
 import Clock from '../Clock';
 import Weather from '../Weather';
+import Content from '../Content';
 
 import './index.css';
 
@@ -33,6 +35,10 @@ class Landing extends Component
             <React.Fragment>
                 <Header/>
                 <About/>
+                <Carousel>
+                    <Content username="Deborah Chan" userpic="https://scontent.ftij3-1.fna.fbcdn.net/v/t1.18169-9/575681_108819125982220_124974326_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=LnjynaU7oHsAX-REiKZ&_nc_ht=scontent.ftij3-1.fna&oh=404f1ae7544aec473194b6d898f37bbf&oe=61529BC7" date="16/12/2020" datatext="Today is my birthday!!!... Whatever"/>
+                    <Content username="Oscar Figueroa" userpic="https://scontent.ftij3-1.fna.fbcdn.net/v/t1.6435-9/118855829_1190851211290913_7150096692545198690_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=odIpNqCSWY0AX9MiLM_&_nc_ht=scontent.ftij3-1.fna&oh=dc69b546099b11494bdff910a44e10be&oe=6151EA73" date="16/12/2020" datatext="Today was Deborah's birthday... Whatever"/>
+                </Carousel>
                 <div className='accordion-section'>
                     <Accordion>
                         <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
