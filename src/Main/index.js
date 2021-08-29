@@ -9,12 +9,13 @@ import Signup from '../Signup';
 
 class Main extends Component{
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             auth: false,
-            value: "0",
+            value: props.history.location.pathname,
         };
+        console.log(props.history);
     }
 
     setValue = (event, newValue) => {
@@ -22,16 +23,15 @@ class Main extends Component{
             value: newValue,
         });
     }
-    
 
     render(){
         if(!this.state.auth){
             return(
                 <React.Fragment>
                     <Tabs value={this.state.value} onChange={this.setValue} centered>        
-                        <Tab value="0" label="Overview" component={Link} to='/overview'/>
-                        <Tab value="1" label="Log In" component={Link} to='/log-in'/>
-                        <Tab value="2" label="Sign Up" component={Link} to='/sign-up'/>    
+                        <Tab value="/overview" label="Overview" component={Link} to='/overview'/>
+                        <Tab value="/log-in" label="Log In" component={Link} to='/log-in'/>
+                        <Tab value="/sign-up" label="Sign Up" component={Link} to='/sign-up'/>    
                     </Tabs>
                     <Switch>
                         <Route path='/overview'>
