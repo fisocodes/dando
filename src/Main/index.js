@@ -13,12 +13,23 @@ class Main extends Component{
         super(props);
         this.state = {
             auth: false,
-            value: props.history.location.pathname,
+            value: props.history.location.hash === "" ? "#/overview" : props.history.location.hash,
         };
-        console.log(props.history);
+        console.log(props.history.location);
     }
 
+    componentDidMount(){
+        this.props.history.listen(this.routeChanged);
+    }
+
+    routeChanged = () => {
+        this.setState({
+            value: this.props.history.location.hash === "" ? "#/overview" : this.props.history.location.hash,
+        });
+    }
+    
     setValue = (event, newValue) => {
+        console.log(newValue);
         this.setState({
             value: newValue,
         });
@@ -29,9 +40,9 @@ class Main extends Component{
             return(
                 <React.Fragment>
                     <Tabs value={this.state.value} onChange={this.setValue} centered>        
-                        <Tab value="/overview" label="Overview" component={Link} to='/overview'/>
-                        <Tab value="/log-in" label="Log In" component={Link} to='/log-in'/>
-                        <Tab value="/sign-up" label="Sign Up" component={Link} to='/sign-up'/>    
+                        <Tab value="#/overview" label="Overview" component={Link} to='/overview'/>
+                        <Tab value="#/log-in" label="Log In" component={Link} to='/log-in'/>
+                        <Tab value="#/sign-up" label="Sign Up" component={Link} to='/sign-up'/>    
                     </Tabs>
                     <Switch>
                         <Route path='/overview'>

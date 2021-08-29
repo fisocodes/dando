@@ -20,7 +20,7 @@ class App extends Component
         return(
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <HashRouter>
+                <HashRouter refresh>
                     <Main history={history}/>
                 </HashRouter>  
             </ThemeProvider>
