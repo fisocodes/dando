@@ -35,9 +35,11 @@ class Landing extends Component
             <React.Fragment>
                 <Header/>
                 <About/>
-                <Carousel>
+                <Carousel className="landing-carousel">
                     <Content username="Deborah Chan" userpic="https://scontent.ftij3-1.fna.fbcdn.net/v/t1.18169-9/575681_108819125982220_124974326_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=LnjynaU7oHsAX-REiKZ&_nc_ht=scontent.ftij3-1.fna&oh=404f1ae7544aec473194b6d898f37bbf&oe=61529BC7" date="16/12/2020" datatext="Today is my birthday!!!... Whatever"/>
                     <Content username="Oscar Figueroa" userpic="https://scontent.ftij3-1.fna.fbcdn.net/v/t1.6435-9/118855829_1190851211290913_7150096692545198690_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=odIpNqCSWY0AX9MiLM_&_nc_ht=scontent.ftij3-1.fna&oh=dc69b546099b11494bdff910a44e10be&oe=6151EA73" date="16/12/2020" datatext="Today was Deborah's birthday... Whatever"/>
+                    <Content username="Deborah Chan" userpic="https://scontent.ftij3-1.fna.fbcdn.net/v/t1.18169-9/575681_108819125982220_124974326_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=LnjynaU7oHsAX-REiKZ&_nc_ht=scontent.ftij3-1.fna&oh=404f1ae7544aec473194b6d898f37bbf&oe=61529BC7" date="16/12/2020" datatext="I posted this bc, why not?" dataimage="https://scontent.ftij3-1.fna.fbcdn.net/v/t1.18169-9/26090_102375736468146_7348343_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=de6eea&_nc_ohc=uB8vKmtFF5YAX-kuj7m&_nc_ht=scontent.ftij3-1.fna&oh=683721b66199df001672178f8fd07543&oe=61531F1A"/>
+                    <Content username="Oscar Figueroa" userpic="https://scontent.ftij3-1.fna.fbcdn.net/v/t1.6435-9/118855829_1190851211290913_7150096692545198690_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=odIpNqCSWY0AX9MiLM_&_nc_ht=scontent.ftij3-1.fna&oh=dc69b546099b11494bdff910a44e10be&oe=6151EA73" date="16/12/2020" datatext="A cutie... 🦙" datavideo="https://cdn.videvo.net/videvo_files/video/free/2014-07/large_watermarked/Alpaca_1_preview.mp4"/>
                 </Carousel>
                 <div className='accordion-section'>
                     <Accordion>

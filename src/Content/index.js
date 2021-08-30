@@ -30,7 +30,7 @@ class Content extends Component{
                         <img src={this.props.dataimage} alt='Content' className='contentDataImage'/>
                     :null}
                     {this.props.datavideo ?
-                        <video className='contentDataVideo' controls>
+                        <video className='contentDataVideo' controls autoPlay loop>
                             <source src={this.props.datavideo}></source>
                         </video>
                     :null}

@@ -18,9 +18,16 @@ a
     padding: 2rem;
 }
 
-.timeDiv, .weatherDiv{
+.timeDiv, .weatherDiv {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.landing-carousel{
+    display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
@@ -46,6 +53,11 @@ a
 
     .timeDiv, .weatherDiv{
         flex-direction: row;
+    }
+
+    .landing-carousel{
+        max-width: 66%;
+        margin: auto;
     }
 }  
 
