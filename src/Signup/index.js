@@ -19,6 +19,7 @@ class Signup extends Component
             name: "",
             surname: "",
             dob: "",
+            toke: "",
             isCreateDialogOpen: false,
             dialogTitle: "Creating user",
             dialogContent: <CircularProgress color="secondary"/>,
@@ -53,6 +54,7 @@ class Signup extends Component
             name: this.state.name === '' ? null : this.state.name,
             surname: this.state.surname === '' ? null : this.state.surname,
             dob: this.state.dob === '' ? null : this.state.dob,
+            token: this.state.token === '' ? null : this.state.token,
         })
         .then((response) => {
             
@@ -94,6 +96,7 @@ class Signup extends Component
                         <TextField name="name" onChange={this.handleChange} className="form-input" label="Name" size="medium" color="secondary"/><br></br>
                         <TextField name="surname" onChange={this.handleChange} className="form-input" label="Surname" size="medium" color="secondary"/><br></br>
                         <TextField name="dob" onChange={this.handleChange} className="form-input" type="date" label="DOB" size="medium" color="secondary"/><br></br>
+                        <TextField name="token" onChange={this.handleChange} className="form-input" type="password" required label="Token" size="medium" color="secondary"/><br></br>
                         <Button className="form-input" type="submit" variant="contained" color="primary">Sign Up</Button>
                     </form>
                 </Paper>
