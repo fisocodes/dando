@@ -25,6 +25,7 @@ class Signup extends Component
             dialogContent: <CircularProgress color="secondary"/>,
             dialogActions: null,
             isRedirec: false,
+            isError: false,
         }
     }
 
@@ -37,7 +38,7 @@ class Signup extends Component
     handleOnClose = (event) => {
         this.setState({
             isCreateDialogOpen: false,
-            isRedirect: true,
+            isRedirect: this.state.isError ? false : true,
         });
     }
 
@@ -71,6 +72,7 @@ class Signup extends Component
                 dialogTitle: "An error ocurred",
                 dialogContent: <div className="dialog-content"><Error color="secondary"/>{error.response.data}</div>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Oh no</Button>,
+                isError: true,
             });
             console.log(error.response.data);
         });
@@ -79,7 +81,7 @@ class Signup extends Component
     render()
     {
         return(
-            this.state.isRedirect ? <Redirect to="/overview"/> : 
+            this.state.isRedirect ? <Redirect to="/log-in"/> : 
             <div className='login-form-wrapper'>
                 <Dialog open={this.state.isCreateDialogOpen}>
                     <DialogTitle>{this.state.dialogTitle}</DialogTitle>
