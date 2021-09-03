@@ -19,7 +19,7 @@ class Signup extends Component
             name: "",
             surname: "",
             dob: "",
-            toke: "",
+            token: "",
             isCreateDialogOpen: false,
             dialogTitle: "Creating user",
             dialogContent: <CircularProgress color="secondary"/>,

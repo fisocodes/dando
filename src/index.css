@@ -10,3 +10,10 @@ a{
 a:visited{
     color: none;
 }
+
+.fab-showing {
+    float: right;
+    position: fixed !important;
+    bottom: 1rem;
+    right: 1rem;
+}
