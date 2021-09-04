@@ -21,7 +21,7 @@ class App extends Component
     {
         const parallaxData = [
             {
-              start: 0,
+              start: 400,
               end: 500,
               properties: [
                 {

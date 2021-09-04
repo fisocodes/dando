@@ -16,4 +16,5 @@ a:visited{
     position: fixed !important;
     bottom: 1rem;
     right: 1rem;
+    transform: scale(0.0);
 }
