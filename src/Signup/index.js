@@ -39,6 +39,9 @@ class Signup extends Component
         this.setState({
             isCreateDialogOpen: false,
             isRedirect: this.state.isError ? false : true,
+            dialogTitle: "Creating user",
+            dialogContent: <CircularProgress color="secondary"/>,
+            dialogActions: null,
         });
     }
 
@@ -63,6 +66,7 @@ class Signup extends Component
                 dialogTitle: response.data,
                 dialogContent: <CheckCircle color="secondary" fontSize="large"/>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Noice</Button>,
+                isError: false,
             });
 
             console.log(response);
