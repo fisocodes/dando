@@ -24,7 +24,7 @@ class Signup extends Component
             dialogTitle: "Creating user",
             dialogContent: <CircularProgress color="secondary"/>,
             dialogActions: null,
-            isRedirec: false,
+            isRedirect: false,
             isError: false,
         }
     }

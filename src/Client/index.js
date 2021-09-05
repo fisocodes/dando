@@ -4,18 +4,14 @@ import { Tabs } from '@material-ui/core';
 import { Tab } from '@material-ui/core';
 import { createBrowserHistory } from 'history';
 
-import Overview from '../Overview';
-import Login from '../Login';
-import Signup from '../Signup';
-
 const history = createBrowserHistory();
 
-class Landing extends Component {
+class Client extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            value: history.location.hash === "" ? "#/overview" : history.location.hash,
+            value: history.location.hash === "" ? "#/home" : history.location.hash,
         };
         console.log(history.location);
     }
@@ -26,7 +22,7 @@ class Landing extends Component {
 
     routeChanged = () => {
         this.setState({
-            value: history.location.hash === "" ? "#/overview" : history.location.hash,
+            value: history.location.hash === "" ? "#/home" : history.location.hash,
         });
     }
     
@@ -41,27 +37,27 @@ class Landing extends Component {
         return(
             <React.Fragment>
                 <Tabs value={this.state.value} onChange={this.setValue} centered>        
-                    <Tab value="#/overview" label="Overview" component={Link} to='/overview'/>
-                    <Tab value="#/log-in" label="Log In" component={Link} to='/log-in'/>
-                    <Tab value="#/sign-up" label="Sign Up" component={Link} to='/sign-up'/>    
+                    <Tab value="#/home" label="Home" component={Link} to='/home'/>
+                    <Tab value="#/user" label="User" component={Link} to='/user'/>
+                    <Tab value="#/statistics" label="Statistics" component={Link} to='/statistics'/>    
                 </Tabs>
                 <Switch>
-                    <Route path='/overview'>
-                        <Overview/>
+                    <Route path='/home'>
+                        <h1>Home</h1>
                     </Route>
-                    <Route path='/log-in'>
-                        <Login/>
+                    <Route path='/user'>
+                        <h1>User</h1>
                     </Route>
-                    <Route path='/sign-up'>
-                        <Signup/>
+                    <Route path='/statistics'>
+                        <h1>Statistics</h1>
                     </Route>
                     <Route path='/'>
-                        <Redirect to='/overview'/>
+                    <Redirect to='/home'/>
                     </Route>
-                </Switch>
+              </Switch>
             </React.Fragment>
         );
     }
 }
 
-export default Landing;
+export default Client;
