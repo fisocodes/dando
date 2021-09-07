@@ -21,11 +21,6 @@ class Header extends Component
                 <Dust/>
                 <Dust/>
                 <Dust/>
-                <Dust/>
-                <Dust/>
-                <Dust/>
-                <Dust/>
-                <Dust/>
                 <Star/>
                 <Star/>
                 <Star/>
