@@ -17,7 +17,7 @@ class Login extends Component
             username: "",
             password: "",
             isCreateDialogOpen: false,
-            dialogTitle: "Loging In",
+            dialogTitle: "Signing In",
             dialogContent: <CircularProgress color="secondary"/>,
             dialogActions: null,
             isRedirect: false,
@@ -35,7 +35,7 @@ class Login extends Component
         this.setState({
             isCreateDialogOpen: false,
             isRedirect: this.state.isError ? false : true,
-            dialogTitle: "Loging In",
+            dialogTitle: "Signing In",
             dialogContent: <CircularProgress color="secondary"/>,
             dialogActions: null,
         });

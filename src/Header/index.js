@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Star from '../Star';
+import Dust from '../Dust';
 
 import './index.css';
 
@@ -10,6 +11,16 @@ class Header extends Component
     {
         return(
             <header id='top'>
+                <Dust/>
+                <Dust/>
+                <Dust/>
+                <Dust/>
+                <Dust/>
+                <Dust/>
+                <Dust/>
+                <Dust/>
+                <Dust/>
+                <Dust/>
                 <Star/>
                 <Star/>
                 <Star/>

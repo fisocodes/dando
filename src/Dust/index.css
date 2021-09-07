@@ -1,0 +1,17 @@
+.galaxy-dust{
+    position: absolute;
+    animation-name: path-animation;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    opacity: 0.0;
+}
+
+@keyframes path-animation {
+    from{
+        opacity: 0.0;
+    }
+
+    to{
+        opacity: 0.3;
+    }
+}
