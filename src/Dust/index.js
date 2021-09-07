@@ -9,8 +9,8 @@ class Dust extends Component {
         const dustStyle = {
             left: `${Math.random() * 100- 30}vw`,
             top: `${Math.random() * 100 - 50}vh`,
-            height: `${Math.random()* 150 + 100}vh`,
-            width: `${Math.random()* 150 + 100}vh`,
+            height: `${Math.random()* 100 + 50}vh`,
+            width: `${Math.random()* 100 + 50}vh`,
             transform: `rotate(${Math.random()*360}deg)`,
             animationDelay: `${Math.random() * 5}s`,
             animationDuration: `${Math.random() * 7 + 5}s`,
