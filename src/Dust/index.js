@@ -7,8 +7,8 @@ class Dust extends Component {
     render(){
 
         const dustStyle = {
-            left: `${Math.floor(Math.random() * (100 - -100 + 1) ) + -100}%`,
-            top: `${Math.floor(Math.random() * (100 - -100 + 1) ) + -100}px`,
+            left: `${Math.random() * 100 - 50}vh`,
+            top: `${Math.random() * 100 - 50}vh`,
             height: `${Math.random()* 500 + 300}`,
             width: `${Math.random()* 500 + 300}`,
             transform: `rotate(${Math.random()*360}deg)`,
