@@ -20,8 +20,6 @@ class Header extends Component
                 <Dust color="deeppink" gradID="1"/>
                 <Dust color="deeppink" gradID="1"/>
                 <Dust color="deeppink" gradID="1"/>
-                <Dust color="deeppink" gradID="1"/>
-                <Dust color="deepskyblue" gradID="2"/>
                 <Dust color="deepskyblue" gradID="2"/>
                 <Dust color="deepskyblue" gradID="2"/>
                 <Dust color="deepskyblue" gradID="2"/>
