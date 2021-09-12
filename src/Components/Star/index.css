@@ -1,6 +1,6 @@
 .star-component
 {
-    background-image: url("../image/stars.png");
+    background-image: url("../../image/stars.png");
     background-size: 1.25rem; 
     animation-name: blink;
     animation-iteration-count: infinite;

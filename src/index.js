@@ -7,8 +7,8 @@ import { Fab } from '@material-ui/core';
 import KeyboardArrowUpRoundedIcon from '@material-ui/icons/KeyboardArrowUpRounded';
 import Plx from 'react-plx/lib/Plx';
 
-import theme from './Theme';
-import Main from './Main';
+import theme from './Core/Theme';
+import Main from './Core/Main';
 
 import './index.css';
 

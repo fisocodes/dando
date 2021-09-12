@@ -35,17 +35,19 @@ class Data extends Component
         return(
             <VisibilitySensor partialVisibility offset={{top:10, bottom:10}} onChange={this.showData}>
                 <table className={'dataTable ' + this.state.visibleClass}>
-                    <tr>
-                        <th>
-                            <i className='material-icons data-icon'>{this.props.icon}</i>
-                            {this.props.title}
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <CountUp end={this.props.quantity} redraw={false} separator="," duration={this.state.duration} start={this.state.isVisible && this.state.visibilityFires < 3 ? () => {} : null}/>  
-                        </td>
-                    </tr>  
+                    <tbody>
+                        <tr>
+                            <th>
+                                <i className='material-icons data-icon'>{this.props.icon}</i>
+                                {this.props.title}
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <CountUp end={this.props.quantity} redraw={false} separator="," duration={this.state.duration} start={this.state.isVisible && this.state.visibilityFires < 3 ? () => {} : null}/>  
+                            </td>
+                        </tr>  
+                    </tbody>
                 </table>
             </VisibilitySensor>
         );

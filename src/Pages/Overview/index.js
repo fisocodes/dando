@@ -3,11 +3,11 @@ import Accordion from '@material-ui/core/Accordion';
 import { AccordionDetails, AccordionSummary } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import Header from '../Header';
-import Data from '../Data';
-import About from '../About';
-import Clock from '../Clock';
-import Weather from '../Weather';
+import Header from '../../Components/Header';
+import Data from '../../Components/Data';
+import About from '../../Components/About';
+import Clock from '../../Components/Clock';
+import Weather from '../../Components/Weather';
 
 import './index.css';
 

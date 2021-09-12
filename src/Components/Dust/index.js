@@ -20,8 +20,8 @@ class Dust extends Component {
         return(
             <svg className="galaxy-dust" style={dustStyle}>
                 <radialGradient id={this.props.gradID}>
-                    <stop offset="10%" stop-color={this.props.color} stop-opacity="1.0"/>
-                    <stop offset="120%" stop-color="darkslateblue" stop-opacity="0.0"/>
+                    <stop offset="10%" stopColor={this.props.color} stopOpacity="1.0"/>
+                    <stop offset="120%" stopColor="darkslateblue" stopOpacity="0.0"/>
                 </radialGradient>
                 <rect className="dust-shape" width="100%" height="100%" fill={fill}/>
             </svg>

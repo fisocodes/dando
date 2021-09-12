@@ -4,9 +4,9 @@ import { Tabs } from '@material-ui/core';
 import { Tab } from '@material-ui/core';
 import { createBrowserHistory } from 'history';
 
-import Overview from '../Overview';
-import Login from '../Login';
-import Signup from '../Signup';
+import Overview from '../../Pages/Overview';
+import Login from '../../Pages/Login';
+import Signup from '../../Pages/Signup';
 
 const history = createBrowserHistory();
 
@@ -17,7 +17,6 @@ class Landing extends Component {
         this.state = {
             value: history.location.hash === "" ? "#/overview" : history.location.hash,
         };
-        console.log(history.location);
     }
 
     componentDidMount(){

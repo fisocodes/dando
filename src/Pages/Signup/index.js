@@ -5,19 +5,23 @@ import { CircularProgress} from '@material-ui/core';
 import { CheckCircle, Error } from '@material-ui/icons';
 import { Redirect } from 'react-router';
 
-import Axios from '../Axios';
+import Axios from '../../Core/Axios';
 
 import './index.css';
 
-class Login extends Component
+class Signup extends Component
 {
     constructor(){
         super();
         this.state = {
             username: "",
             password: "",
+            name: "",
+            surname: "",
+            dob: "",
+            token: "",
             isCreateDialogOpen: false,
-            dialogTitle: "Signing In",
+            dialogTitle: "Creating user",
             dialogContent: <CircularProgress color="secondary"/>,
             dialogActions: null,
             isRedirect: false,
@@ -35,7 +39,7 @@ class Login extends Component
         this.setState({
             isCreateDialogOpen: false,
             isRedirect: this.state.isError ? false : true,
-            dialogTitle: "Signing In",
+            dialogTitle: "Creating user",
             dialogContent: <CircularProgress color="secondary"/>,
             dialogActions: null,
         });
@@ -48,9 +52,13 @@ class Login extends Component
             isCreateDialogOpen: true,
         });
 
-        Axios.post('/users/authenticate', {
+        Axios.post('/users/create', {
             username: this.state.username === '' ? null : this.state.username,
             password: this.state.password === '' ? null : this.state.password,
+            name: this.state.name === '' ? null : this.state.name,
+            surname: this.state.surname === '' ? null : this.state.surname,
+            dob: this.state.dob === '' ? null : this.state.dob,
+            token: this.state.token === '' ? null : this.state.token,
         })
         .then((response) => {
             
@@ -77,7 +85,7 @@ class Login extends Component
     render()
     {
         return(
-            this.state.isRedirect ? <Redirect to="/home"/> :
+            this.state.isRedirect ? <Redirect to="/log-in"/> : 
             <div className='login-form-wrapper'>
                 <Dialog open={this.state.isCreateDialogOpen}>
                     <DialogTitle>{this.state.dialogTitle}</DialogTitle>
@@ -88,10 +96,14 @@ class Login extends Component
                 </Dialog>
                 <Paper className="login-paper">
                     <form className='login-form' onSubmit={this.handleSubmit}>
-                        <label className="form-input">Login</label>
-                        <TextField className="form-input" name="username" onChange={this.handleChange} autoFocus label="Username" size="medium" color="secondary"/><br></br>
-                        <TextField className="form-input" name="password" onChange={this.handleChange} type="password" autofocus label="Password" size="medium" color="secondary"/><br></br>
-                        <Button className="form-input" type="submit" variant="contained" color="primary">Log In</Button>
+                        <label className="form-input">Sign Up</label>
+                        <TextField name="username" required onChange={this.handleChange} className="form-input" autoFocus label="Username" size="medium" color="secondary"/><br></br>
+                        <TextField name="password" required onChange={this.handleChange} className="form-input" type="password" label="Password" size="medium" color="secondary"/><br></br>
+                        <TextField name="name" onChange={this.handleChange} className="form-input" label="Name" size="medium" color="secondary"/><br></br>
+                        <TextField name="surname" onChange={this.handleChange} className="form-input" label="Surname" size="medium" color="secondary"/><br></br>
+                        <TextField name="dob" onChange={this.handleChange} className="form-input" type="date" label="DOB" size="medium" color="secondary"/><br></br>
+                        <TextField name="token" onChange={this.handleChange} className="form-input" type="password" required label="Token" size="medium" color="secondary"/><br></br>
+                        <Button className="form-input" type="submit" variant="contained" color="primary">Sign Up</Button>
                     </form>
                 </Paper>
             </div>
@@ -99,4 +111,4 @@ class Login extends Component
     }
 }
 
-export default Login;
+export default Signup;

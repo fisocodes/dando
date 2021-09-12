@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import Landing from '../Landing';
-import Client from '../Client';
+import Landing from '../../Core/Landing';
+import Client from '../../Core/Client';
 
 class Main extends Component{
 
