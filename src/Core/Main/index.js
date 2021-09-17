@@ -19,7 +19,7 @@ class Main extends Component{
         Axios.post('/users/authenticate', {
             username: this.state.username === '' ? null : this.state.username,
             password: this.state.password === '' ? null : this.state.password,
-        }, {withCredentials: true})
+        }, {withCredentials: true, credentials: 'include'})
         .then((response) => {
             console.log(response);
         })
