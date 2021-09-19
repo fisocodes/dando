@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 
 import Landing from '../../Core/Landing';
 import Client from '../../Core/Client';
-
 import Axios from '../Axios';
+import Loading from '../../Pages/Loading';
+import store from '../Redux/Store';
 
 class Main extends Component{
 
@@ -11,27 +12,39 @@ class Main extends Component{
         super();
 
         this.state = {
-            username: 'fisocodes',
-            password: 'sotooscar1',
-            user: null,
+            user: 0,
         };
+    }
 
-        Axios.post('/users/authenticate', {
-            username: this.state.username === '' ? null : this.state.username,
-            password: this.state.password === '' ? null : this.state.password,
-        }, {withCredentials: true, credentials: 'include'})
+    setStateFromStore = () => {
+        this.setState({
+            user: store.getState().user,
+        });
+    }
+
+    componentDidMount(){
+        store.subscribe(this.setStateFromStore);
+        Axios.post('/users/authenticate', {username: '', password: ''}, {withCredentials: true})
         .then((response) => {
-            console.log(response);
+            console.log(response.data);
+            store.dispatch({type: 'user/setUser', payload: response.data.user});
         })
         .catch((error) =>{
-            console.log(error);
+            store.dispatch({type: 'user/setNull'});
         });
-
     }
 
-    render(){
-        return this.state.user === null ? <Landing/> : <Client/>;
+    render() {
+        switch (this.state.user) {
+            case null:
+                    return <Landing/>;
+            case 0:
+                    return <Loading/>;
+            default:
+                    return <Client/>;
+        }
     }
+
 }
 
 export default Main;

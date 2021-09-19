@@ -13,7 +13,6 @@ class Client extends Component {
         this.state = {
             value: history.location.hash === "" ? "#/home" : history.location.hash,
         };
-        console.log(history.location);
     }
 
     componentDidMount(){

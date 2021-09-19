@@ -6,6 +6,7 @@ import { CheckCircle, Error } from '@material-ui/icons';
 import { Redirect } from 'react-router';
 
 import Axios from '../../Core/Axios';
+import store from '../../Core/Redux/Store';
 
 import './index.css';
 
@@ -51,15 +52,17 @@ class Login extends Component
         Axios.post('/users/authenticate', {
             username: this.state.username === '' ? null : this.state.username,
             password: this.state.password === '' ? null : this.state.password,
-        })
+        }, {withCredentials: true})
         .then((response) => {
             
             this.setState({
-                dialogTitle: response.data,
+                dialogTitle: response.data.message,
                 dialogContent: <CheckCircle color="secondary" fontSize="large"/>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Noice</Button>,
                 isError: false,
             });
+
+            store.dispatch({type: 'user/setUser', payload: response.data.user});
 
             console.log(response);
         })
@@ -90,7 +93,7 @@ class Login extends Component
                     <form className='login-form' onSubmit={this.handleSubmit}>
                         <label className="form-input">Login</label>
                         <TextField className="form-input" name="username" onChange={this.handleChange} autoFocus label="Username" size="medium" color="secondary"/><br></br>
-                        <TextField className="form-input" name="password" onChange={this.handleChange} type="password" autofocus label="Password" size="medium" color="secondary"/><br></br>
+                        <TextField className="form-input" name="password" onChange={this.handleChange} type="password" label="Password" size="medium" color="secondary"/><br></br>
                         <Button className="form-input" type="submit" variant="contained" color="primary">Log In</Button>
                     </form>
                 </Paper>

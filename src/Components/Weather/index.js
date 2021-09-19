@@ -8,9 +8,9 @@ class Weather extends Component{
     constructor(props){
         super(props);
         this.state = {
-            icon: '',
-            temperature: '',
-            weather: ''
+            icon: null,
+            temperature: null,
+            weather: null,
         }
     }
 
@@ -25,7 +25,10 @@ class Weather extends Component{
     }
 
     render(){
-        const iconSource = 'https://www.weatherbit.io/static/img/icons/' + this.state.icon + '.png';
+        let iconSource = null;
+        if(this.state.icon){
+            iconSource = 'https://www.weatherbit.io/static/img/icons/' + this.state.icon + '.png';
+        }
         const temperature = this.state.temperature + ' °C';
         return(
             <Paper className='weatherContainer'>

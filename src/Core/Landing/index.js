@@ -15,25 +15,37 @@ class Landing extends Component {
     constructor(props){
         super(props);
         this.state = {
+            isMounted: false,
             value: history.location.hash === "" ? "#/overview" : history.location.hash,
         };
     }
 
     componentDidMount(){
-        history.listen(this.routeChanged);
+        this.setState({isMounted: true});
+
+        if(this.state.isMounted){
+            history.listen(this.routeChanged);
+        }
+    }
+
+    componentWillUnmount(){
+        this.setState({isMounted: false});
     }
 
     routeChanged = () => {
-        this.setState({
-            value: history.location.hash === "" ? "#/overview" : history.location.hash,
-        });
+        if(this.state.isMounted){
+            this.setState({
+                value: history.location.hash === "" ? "#/overview" : history.location.hash,
+            });
+        }
     }
     
     setValue = (event, newValue) => {
-        console.log(newValue);
-        this.setState({
-            value: newValue,
-        });
+        if(this.state.isMounted){
+            this.setState({
+                value: newValue,
+            });
+        }
     }
 
     render() {

@@ -8,6 +8,7 @@ class Clock extends Component{
     constructor(props){
         super(props);
         this.state = {
+            clockInterval: null,
             hour: 0,
             minutes: 0,
             seconds: 0,
@@ -21,19 +22,18 @@ class Clock extends Component{
         const timeZoneData = await response.json();
         const data = timeZoneData.data;
         this.setState({
+            clockInterval: setInterval(this.changeSeconds, 1000),
+            isMounted: true,
             hour: parseInt(data.datetime.hour_24_wolz),
             minutes: parseInt(data.datetime.minutes),
             seconds: parseInt(data.datetime.seconds),
             day: data.datetime.day_full,
             date: data.datetime.date
         });
+    }
 
-        const clock = this;
-        setInterval(function(){
-            clock.setState({
-                seconds: clock.state.seconds + 1
-            });
-        }, 1000);
+    componentWillUnmount(){
+        clearInterval(this.state.clockInterval);
     }
 
     componentDidUpdate(){
@@ -57,6 +57,12 @@ class Clock extends Component{
                 hour: 0
             });
         }
+    }
+
+    changeSeconds = () => {
+        this.setState({
+            seconds: this.state.seconds + 1
+        });
     }
 
     render(){
