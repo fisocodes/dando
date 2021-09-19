@@ -4,12 +4,14 @@ import { Tabs } from '@material-ui/core';
 import { Tab } from '@material-ui/core';
 import { createBrowserHistory } from 'history';
 
+import ModalMessage from '../../Components/ModalMessage';
+
 const history = createBrowserHistory();
 
 class Client extends Component {
 
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             value: history.location.hash === "" ? "#/home" : history.location.hash,
         };
@@ -35,6 +37,7 @@ class Client extends Component {
     render() {
         return(
             <React.Fragment>
+                <ModalMessage/>
                 <Tabs value={this.state.value} onChange={this.setValue} centered>        
                     <Tab value="#/home" label="Home" component={Link} to='/home'/>
                     <Tab value="#/user" label="User" component={Link} to='/user'/>

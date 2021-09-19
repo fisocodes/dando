@@ -60,16 +60,13 @@ class Signup extends Component
             dob: this.state.dob === '' ? null : this.state.dob,
             token: this.state.token === '' ? null : this.state.token,
         })
-        .then((response) => {
-            
+        .then((response) => {          
             this.setState({
                 dialogTitle: response.data,
                 dialogContent: <CheckCircle color="secondary" fontSize="large"/>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Noice</Button>,
                 isError: false,
             });
-
-            console.log(response);
         })
         .catch((error) =>{
             this.setState({
@@ -78,7 +75,6 @@ class Signup extends Component
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Oh no</Button>,
                 isError: true,
             });
-            console.log(error.response.data);
         });
     }
 

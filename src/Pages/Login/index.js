@@ -62,9 +62,8 @@ class Login extends Component
                 isError: false,
             });
 
+            store.dispatch({type: 'modal/setMessage', payload: response.data.message});
             store.dispatch({type: 'user/setUser', payload: response.data.user});
-
-            console.log(response);
         })
         .catch((error) =>{
             this.setState({

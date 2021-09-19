@@ -1,0 +1,23 @@
+.modal-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-background{
+    background-color: darkslateblue;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-message{
+    font-family: LittleMiracles;
+    position: absolute;
+}
+
+@font-face
+{
+    font-family: LittleMiracles;
+    src: url("../../fonts/LittleMiracles.ttf");
+}

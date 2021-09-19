@@ -26,7 +26,7 @@ class Main extends Component{
         store.subscribe(this.setStateFromStore);
         Axios.post('/users/authenticate', {username: '', password: ''}, {withCredentials: true})
         .then((response) => {
-            console.log(response.data);
+            store.dispatch({type: 'modal/setMessage', payload: response.data.message});
             store.dispatch({type: 'user/setUser', payload: response.data.user});
         })
         .catch((error) =>{
