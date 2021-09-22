@@ -68,11 +68,10 @@ class Login extends Component
         .catch((error) =>{
             this.setState({
                 dialogTitle: "An error ocurred",
-                dialogContent: <div className="dialog-content"><Error color="secondary"/>{error.response.data}</div>,
+                dialogContent: <div className="dialog-content"><Error color="secondary"/>{error.response.data.message}</div>,
                 dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Oh no</Button>,
                 isError: true,
             });
-            console.log(error.response.data);
         });
     }
 
