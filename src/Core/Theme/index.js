@@ -4,14 +4,21 @@ import { amber } from '@material-ui/core/colors';
 
 const theme = createTheme({
     palette: {
-        type: 'dark',
-        primary: {
-          main: deepPurple[500],
-        },
-        secondary: {
-          main: amber[200],
-        },
-      }
+      type: 'dark',
+      primary: {
+        main: deepPurple[500],
+      },
+      secondary: {
+        main: amber[200],
+      },
+      background: {
+        default: '#000000',
+        paper: '#212121',
+      },
+    },
+    shape: {
+      borderRadius: 20,
+    },
 });
 
 export default theme;
