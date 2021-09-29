@@ -10,7 +10,7 @@ class Header extends Component
     render()
     {
         return(
-            <header id='top'>
+            <header className="dando-header" id='top'>
                 <Dust color="deeppink" gradID="1"/>
                 <Dust color="deeppink" gradID="1"/>
                 <Dust color="deeppink" gradID="1"/>
