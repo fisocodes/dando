@@ -55,10 +55,6 @@ function Overview(){
             <Star/>
             <Star/>
             <Star/>
-            <Star/>
-            <Star/>
-            <Star/>
-            <Star/>
             <Dust color="deeppink" gradID="1"/>
             <Dust color="deeppink" gradID="1"/>
             <Dust color="deeppink" gradID="1"/>
@@ -69,15 +65,6 @@ function Overview(){
             <Dust color="deeppink" gradID="1"/>
             <Dust color="deeppink" gradID="1"/>
             <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deepskyblue" gradID="2"/>
-            <Dust color="deepskyblue" gradID="2"/>
-            <Dust color="deepskyblue" gradID="2"/>
-            <Dust color="deepskyblue" gradID="2"/>
             <Dust color="deepskyblue" gradID="2"/>
             <Dust color="deepskyblue" gradID="2"/>
             <Dust color="deepskyblue" gradID="2"/>
