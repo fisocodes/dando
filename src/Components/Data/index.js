@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import './index.css';
+import './index.scss';
 
 class Data extends Component
 {
@@ -34,7 +34,7 @@ class Data extends Component
     {
         return(
             <VisibilitySensor partialVisibility offset={{top:10, bottom:10}} onChange={this.showData}>
-                <table className={'dataTable ' + this.state.visibleClass}>
+                <table className={'data-table ' + this.state.visibleClass}>
                     <tbody>
                         <tr>
                             <th>

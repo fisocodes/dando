@@ -5,6 +5,23 @@ import './index.css';
 
 class Star extends Component
 {
+  constructor(){
+    super();
+    this.state = {
+      starWrapperStyle: null,
+    }
+  }
+
+  componentDidMount(){
+    this.setState({
+      starWrapperStyle: {
+        top: `${Math.random() * document.querySelector('#overviewContainer').clientHeight}px`,
+        left: `${Math.random() * 100 }%`,
+        transform: `scale(${0.25 + Math.random() * 0.75})`,
+      }
+    });
+  }
+
   render()
   {
     const starStyle = {
@@ -13,16 +30,10 @@ class Star extends Component
 
     }
 
-    const starWrapperStyle = {
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      transform: `scale(${0.25 + Math.random() * 0.75})`,
-    }
-
     const parallaxData = [
         {
           start: 0,
-          end: 1000,
+          end: 3000,
           properties: [
             {
               startValue: 0,
@@ -34,7 +45,7 @@ class Star extends Component
       ];
 
     return(
-        <div className='star-wrapper' style={starWrapperStyle}>
+        <div className='star-wrapper' style={this.state.starWrapperStyle}>
           <Plx  parallaxData={parallaxData}>
               <div className='star-component' style={starStyle}></div>
           </Plx>

@@ -1,79 +1,70 @@
-import React, {Component} from 'react';
-import { Paper } from '@material-ui/core';
+import React, { useState, useEffect} from 'react';
+import Tilt from 'react-tilt';
 
-import './index.css';
+import './index.scss';
 
-class Clock extends Component{
+function Clock(props){
 
-    constructor(props){
-        super(props);
-        this.state = {
-            clockInterval: null,
-            hour: 0,
-            minutes: 0,
-            seconds: 0,
-            day: '',
-            date: ''
-        }
-    }
+    const [seconds, setSeconds] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+    const [hours, setHours] = useState(0);
+    const [day, setDay] = useState('');
+    const [date, setDate] = useState('');
 
-    async componentDidMount(){
-        const response = await fetch('https://timezoneapi.io/api/timezone/?' + this.props.timezone + '&token=agWsJmlFvzmdrhYSamPR');
-        const timeZoneData = await response.json();
-        const data = timeZoneData.data;
-        this.setState({
-            clockInterval: setInterval(this.changeSeconds, 1000),
-            isMounted: true,
-            hour: parseInt(data.datetime.hour_24_wolz),
-            minutes: parseInt(data.datetime.minutes),
-            seconds: parseInt(data.datetime.seconds),
-            day: data.datetime.day_full,
-            date: data.datetime.date
-        });
-    }
+    //STARTING COMPONENT EFFECT
+    useEffect( () => {
 
-    componentWillUnmount(){
-        clearInterval(this.state.clockInterval);
-    }
+        async function fetchData(){
+            const response = await fetch('https://timezoneapi.io/api/timezone/?' + props.timezone + '&token=agWsJmlFvzmdrhYSamPR');
+            const timeZoneData = await response.json();
+            const data = timeZoneData.data;
 
-    componentDidUpdate(){
-        if(this.state.seconds === 60){
-            this.setState({
-                minutes: this.state.minutes + 1,
-                seconds: 0,
-
-            });
+            setSeconds(parseInt(data.datetime.seconds));
+            setMinutes(parseInt(data.datetime.minutes));
+            setHours(parseInt(data.datetime.hour_24_wolz));
+            setDay(data.datetime.day_full);
+            setDate(data.datetime.date);
         }
 
-        if(this.state.minutes === 60){
-            this.setState({
-                hour: this.state.hour + 1,
-                minutes: 0
-            });
+        const changeSeconds = function(){
+            setSeconds(seconds => seconds + 1);
         }
 
-        if(this.state.hour === 24){
-            this.setState({
-                hour: 0
-            });
+        const secondsInterval = setInterval(changeSeconds, 1000);
+
+        fetchData();
+
+        return function cleanUp() {
+            clearInterval(secondsInterval);
         }
-    }
+    }, [props.timezone]);
 
-    changeSeconds = () => {
-        this.setState({
-            seconds: this.state.seconds + 1
-        });
-    }
+    //UPDATING COMPONENT EFFECT
+    useEffect(() => {
+        if(seconds === 60){
+            setMinutes(minutes + 1);
+            setSeconds(0);
+        }
 
-    render(){
-        return(
-            <Paper className='clockContainer'>
-                <h3>{this.props.location}</h3>
-                <h1>{String(this.state.hour).padStart(2, '0')} : {String(this.state.minutes).padStart(2, '0')} : {String(this.state.seconds).padStart(2, '0')}</h1>
-                <h3>{this.state.day} {this.state.date}</h3>
-            </Paper>
-        );
-    }
+        if(minutes === 60){
+            setHours(hours + 1);
+            setMinutes(0);
+        }
+
+        if(hours === 24){
+            setHours(0);
+        }
+    }, [seconds, minutes, hours]);
+
+    return(
+        <Tilt className="clock-container" options={{max:10, scale:1}}>
+            <div className="clock-background">
+                <h3>{props.location}</h3>
+                <h1>{String(hours).padStart(2, '0')} : {String(minutes).padStart(2, '0')} : {String(seconds).padStart(2, '0')}</h1>
+                <h3>{day} {date}</h3>
+            </div>
+        </Tilt>
+    )
 }
 
 export default Clock;

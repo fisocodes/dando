@@ -1,0 +1,25 @@
+.weather-container{
+    width: 100%;
+    z-index: 2;
+
+    .weather-background{
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        background: rgba(255, 255, 255, 0.13);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(2.2px);
+        -webkit-backdrop-filter: blur(2.2px);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+
+        .weather-icon{
+            height: 50px;
+        }
+    }   
+}

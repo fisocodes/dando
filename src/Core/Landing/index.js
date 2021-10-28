@@ -8,6 +8,8 @@ import Overview from '../../Pages/Overview';
 import Login from '../../Pages/Login';
 import Signup from '../../Pages/Signup';
 
+import './index.scss';
+
 const history = createBrowserHistory();
 
 class Landing extends Component {
@@ -51,11 +53,12 @@ class Landing extends Component {
     render() {
         return(
             <React.Fragment>
-                <Tabs value={this.state.value} onChange={this.setValue} centered>        
+            <Tabs value={this.state.value} onChange={this.setValue} centered>        
                     <Tab value="#/overview" label="Overview" component={Link} to='/overview'/>
                     <Tab value="#/log-in" label="Log In" component={Link} to='/log-in'/>
                     <Tab value="#/sign-up" label="Sign Up" component={Link} to='/sign-up'/>    
                 </Tabs>
+            <div className="landing-container">
                 <Switch>
                     <Route path='/overview'>
                         <Overview/>
@@ -70,6 +73,7 @@ class Landing extends Component {
                         <Redirect to='/overview'/>
                     </Route>
                 </Switch>
+            </div>
             </React.Fragment>
         );
     }

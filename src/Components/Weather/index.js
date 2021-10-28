@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { Paper } from '@material-ui/core';
+import Tilt from 'react-tilt';
 
-import './index.css';
+import './index.scss';
 
 class Weather extends Component{
 
@@ -31,12 +31,14 @@ class Weather extends Component{
         }
         const temperature = this.state.temperature + ' °C';
         return(
-            <Paper className='weatherContainer'>
-                <h3>{this.props.city}</h3>
-                <img className='weatherIcon' alt='Weather Icon' src={iconSource}/>
-                <h5>{temperature}</h5>
-                <h3>{this.state.weather}</h3>
-            </Paper>
+            <Tilt className='weather-container' options={{max:10, scale:1}}>
+                <div className='weather-background'>
+                    <h3>{this.props.city}</h3>
+                    <img className='weather-icon' alt='Weather Icon' src={iconSource}/>
+                    <h5>{temperature}</h5>
+                    <h3>{this.state.weather}</h3>
+                </div>
+            </Tilt>
         );
     }
 }

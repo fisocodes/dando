@@ -1,0 +1,35 @@
+.data-table{
+    margin: 1rem;
+    transition: 2s;
+    width: 100%;
+    z-index: 2;
+
+    th{
+        position: relative;
+        float: left;
+        left: 1rem;
+        padding: 0.5rem;
+
+        .data-icon{
+            margin-right: 0.5rem;
+        }
+    }
+
+    td{
+        padding: 2rem;
+        text-align: center;
+        color: #ffe082;
+        font-size: 1.5rem;
+        letter-spacing: 0.5rem;
+        border: 0.15rem solid #FAFAFA;
+        border-radius: 0.5rem;;
+    }
+}
+
+.fade-in{
+    opacity: 1.0;
+}
+
+.fade-out{
+    opacity: 0.0;
+}
