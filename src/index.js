@@ -37,7 +37,7 @@ class App extends Component
                     <Main/>
                     <Plx parallaxData={parallaxData} className="fab-showing">
                         <Fab color="secondary" size="small" onClick={() => window.scrollTo(0,0)}>
-                            <KeyboardArrowUpRoundedIcon/>
+                            <KeyboardArrowUpRoundedIcon color="primary"/>
                         </Fab>  
                     </Plx>
                 </HashRouter>

@@ -18,7 +18,7 @@ function Overview(){
                 <h2 className='pointer'>&#62;</h2>
             </div>
             <div className="description-section">
-                <h2>What is D&amp;O?</h2>
+                <h2>What is D&amp;O ?</h2>
                 <p>
                     D&amp;O is Deborah's and Oscar's album, where they upload photos,
                     videos, states, message and call each other, for remembering every
@@ -60,16 +60,6 @@ function Overview(){
             <Dust color="deeppink" gradID="1"/>
             <Dust color="deeppink" gradID="1"/>
             <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deeppink" gradID="1"/>
-            <Dust color="deepskyblue" gradID="2"/>
-            <Dust color="deepskyblue" gradID="2"/>
-            <Dust color="deepskyblue" gradID="2"/>
-            <Dust color="deepskyblue" gradID="2"/>
-            <Dust color="deepskyblue" gradID="2"/>
             <Dust color="deepskyblue" gradID="2"/>
             <Dust color="deepskyblue" gradID="2"/>
             <Dust color="deepskyblue" gradID="2"/>
