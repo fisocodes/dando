@@ -26,12 +26,15 @@ function Overview(){
                 </p>
             </div>
             <div className="widget-section">
+                <h2>Time</h2>
                 <Clock location="Sydney" timezone="Australia/Sydney"/>
                 <Clock location="Ensenada" timezone="America/Tijuana"/>
+                <h2>Weather</h2>
                 <Weather city='Cabramatta' country='AU'/>
                 <Weather city='Ensenada' country='MX'/>
             </div>
             <div className="data-section">
+                <h2>Overview</h2>
                 <Data icon='question_answer' icondesc='Messages icon' title='Messages' quantity='142252'/>
                 <Data icon='call' icondesc='Calls icon' title='Calls' quantity='45636'/>
                 <Data icon='image' icondesc='Photos icon' title='Photos' quantity='13421'/>
@@ -39,6 +42,16 @@ function Overview(){
                 <Data icon='article' icondesc='Posts icon' title='Posts' quantity='24634'/>
                 <Data icon='leaderboard' icondesc='Total icon' title='Total stuff' quantity='32535'/>
             </div>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
             <Star/>
             <Star/>
             <Star/>
