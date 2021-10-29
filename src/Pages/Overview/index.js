@@ -15,7 +15,7 @@ function Overview(){
             <div className="title-section">
                 <h1>D&amp;O</h1>
                 <h2>Welcome to our website</h2>
-                <h2 className='pointer'>&#62;</h2>
+                <h2 className='arrow-pointer'>&#62;</h2>
             </div>
             <div className="description-section">
                 <h2>What is D&amp;O ?</h2>

@@ -21,6 +21,15 @@
         h2{
             z-index: 2;
         }
+
+        .arrow-pointer{
+            transform: rotate(90deg);
+            position: relative;
+            animation-name: float-animation;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate-reverse;
+        }
     }
 
     .description-section{
@@ -46,12 +55,17 @@
 
     .data-section, .widget-section{
         display: flex;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
         align-items: center;
         width: 100%;
     }
+}
+
+@keyframes float-animation {
+    from{top: 0px}
+    to{top: 25px}
 }
 
 @font-face
