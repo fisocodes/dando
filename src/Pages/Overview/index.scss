@@ -44,13 +44,60 @@
         }
     }
 
+    .widget-section{
+        .tilt-clock{
+            width: 100%;
+            z-index: 2;
+        }
+
+        .regular-clock{
+            width: 100%;
+            z-index: 2;
+        }
+    }
+
     .data-section, .widget-section{
         display: flex;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 100%;
     }
+}
+
+@media screen and (max-width: 425px) {
+
+    .overview-container{
+        .widget-section{
+            
+            .tilt-clock{
+                display: none;
+            }
+
+            .regular-clock{
+                display: initial;
+            }
+        }
+    }
+    
+}
+
+@media screen and (min-width: 426px) {
+
+    .overview-container{
+        .widget-section{
+            
+            .tilt-clock{
+                display: initial;
+            }
+
+            .regular-clock{
+                display: none;
+            }
+        }
+    }
+    
 }
 
 @font-face
