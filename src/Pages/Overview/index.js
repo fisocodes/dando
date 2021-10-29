@@ -1,9 +1,9 @@
 import Data from '../../Components/Data';
-import Clock from '../../Components/Clock';
 import Weather from '../../Components/Weather';
 
 import Star from '../../Components/Star';
 import Dust from '../../Components/Dust';
+import ClockWidget from '../../Components/ClockWidget';
 
 import './index.scss';
 
@@ -27,8 +27,8 @@ function Overview(){
             </div>
             <div className="widget-section">
                 <h2>Time</h2>
-                <Clock location="Sydney" timezone="Australia/Sydney"/>
-                <Clock location="Ensenada" timezone="America/Tijuana"/>
+                <ClockWidget location="Sydney" timezone="Australia/Sydney"/>
+                <ClockWidget location="Ensenada" timezone="America/Ensenada"/>
                 <h2>Weather</h2>
                 <Weather city='Cabramatta' country='AU'/>
                 <Weather city='Ensenada' country='MX'/>
