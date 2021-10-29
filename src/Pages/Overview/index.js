@@ -1,7 +1,6 @@
 import Data from '../../Components/Data';
 import Clock from '../../Components/Clock';
 import Weather from '../../Components/Weather';
-import Tilt from 'react-tilt';
 
 import Star from '../../Components/Star';
 import Dust from '../../Components/Dust';
@@ -27,19 +26,8 @@ function Overview(){
                 </p>
             </div>
             <div className="widget-section">
-                <Tilt className="tilt-clock" options={{max:10, scale:1}}>
-                    <Clock location="Sydney" timezone="Australia/Sydney"/>
-                </Tilt>
-                <Tilt className="tilt-clock" options={{max:10, scale:1}}>
-                    <Clock location="Ensenada" timezone="America/Tijuana"/>
-                </Tilt>
-                <div className="regular-clock" options={{max:10, scale:1}}>
-                    <Clock location="Sydney" timezone="Australia/Sydney"/>
-                </div>
-                <div className="regular-clock" options={{max:10, scale:1}}>
-                    <Clock location="Ensenada" timezone="America/Tijuana"/>
-                </div>
-                
+                <Clock location="Sydney" timezone="Australia/Sydney"/>
+                <Clock location="Ensenada" timezone="America/Tijuana"/>
                 <Weather city='Cabramatta' country='AU'/>
                 <Weather city='Ensenada' country='MX'/>
             </div>

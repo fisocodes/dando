@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import Tilt from 'react-tilt';
 
 import './index.scss';
 
@@ -56,11 +57,13 @@ function Clock(props){
     }, [seconds, minutes, hours]);
 
     return(
-        <div className="clock-container">
-            <h3>{props.location}</h3>
-            <h1>{String(hours).padStart(2, '0')} : {String(minutes).padStart(2, '0')} : {String(seconds).padStart(2, '0')}</h1>
-            <h3>{day} {date}</h3>
-        </div>
+        <Tilt className="clock-container" options={{max:10, scale:1}}>
+            <div className="clock-background">
+                <h3>{props.location}</h3>
+                <h1>{String(hours).padStart(2, '0')} : {String(minutes).padStart(2, '0')} : {String(seconds).padStart(2, '0')}</h1>
+                <h3>{day} {date}</h3>
+            </div>
+        </Tilt>
     )
 }
 
