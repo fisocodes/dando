@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Tilt from 'react-tilt';
-import SwipeableViews from 'react-swipeable-views';
+import { Carousel } from 'react-responsive-carousel';
 import Clock from 'react-live-clock';
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './index.scss';
 
 class Weather extends Component{
@@ -28,22 +29,22 @@ class Weather extends Component{
             <Tilt className='weather-container' options={{max:10, scale:1}}>
                 <div className='weather-background'>
                     <h3>{this.props.city}</h3>
-                    <SwipeableViews enableMouseEvents resistance>
+                    <Carousel className="forecast-carousel" showThumbs={false} showStatus={false} showIndicators={false}>
                         {
                             this.state.forecastData.map(day => {
                                 return(
-                                    <div key={day.datetime} className="forecast-day">
+                                    <span key={day.datetime} className="forecast-day">
                                         {day === this.state.forecastData[0] ? <div>Today</div> : null}
                                         {day === this.state.forecastData[1] ? <div>Tomorrow</div> : null}
                                         {day !== this.state.forecastData[0] && day !== this.state.forecastData[1] ? <Clock date={day.datetime} format={'dddd'}/> : null}
                                         <img className='weather-icon' alt='Weather Icon' src={`https://www.weatherbit.io/static/img/icons/${day.weather.icon}.png`}/>
                                         <h5>{`${day.temp} °C`}</h5>
                                         <h3>{day.weather.description}</h3>
-                                    </div>
+                                    </span>
                                 );
                             })
                         }
-                    </SwipeableViews>
+                    </Carousel>
                 </div>
             </Tilt>
         );
