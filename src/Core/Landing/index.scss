@@ -1,3 +1,8 @@
 .landing-container{
     overflow: hidden;
+    
+    .carousel-item{
+        overflow: scroll;
+        height: 100vh;
+    }
 }

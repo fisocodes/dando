@@ -6,7 +6,7 @@ const theme = createTheme({
     palette: {
       type: 'dark',
       primary: {
-        main: deepPurple[500],
+        main: '#483D8B',
       },
       secondary: {
         main: amber[200],
