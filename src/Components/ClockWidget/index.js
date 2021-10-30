@@ -10,7 +10,7 @@ function ClockWidget(props){
             <div className="clock-background">
                 <h3>{props.location}</h3>
                 <Clock format={'h:mm:ss A'} ticking={true} timezone={props.timezone} style={{fontSize: '2rem'}}/>
-                <Clock format={'dddd DD/MM/YYYY'} ticking={true} timezone={props.timezone}/>
+                <Clock className="clock-date" format={'dddd DD/MM/YYYY'} ticking={true} timezone={props.timezone}/>
             </div>
         </Tilt>
     )
