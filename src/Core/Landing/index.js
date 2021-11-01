@@ -54,7 +54,7 @@ class Landing extends Component {
     render() {
         return(
             <React.Fragment>
-            <AppBar position="absolute" color="transparent">
+            <AppBar position="fixed" color="primary">
                 <Tabs value={this.state.value} onChange={this.setValue} centered>        
                         <Tab value="#/overview" label="Overview" component={Link} to='/overview'/>
                         <Tab value="#/log-in" label="Log In" component={Link} to='/log-in'/>

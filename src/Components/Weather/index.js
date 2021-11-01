@@ -22,6 +22,8 @@ class Weather extends Component{
         this.setState({
             forecastData: forecastJson.data
         });
+
+        console.log(this.state.forecastData);
     }
 
     render(){
@@ -38,7 +40,7 @@ class Weather extends Component{
                                         {day === this.state.forecastData[1] ? <div>Tomorrow</div> : null}
                                         {day !== this.state.forecastData[0] && day !== this.state.forecastData[1] ? <Clock date={day.datetime} format={'dddd'}/> : null}
                                         <img className='weather-icon' alt='Weather Icon' src={`https://www.weatherbit.io/static/img/icons/${day.weather.icon}.png`}/>
-                                        <h5>{`${day.temp} °C`}</h5>
+                                        <h5>{`${day.max_temp} °C`}</h5>
                                         <h3>{day.weather.description}</h3>
                                     </span>
                                 );
