@@ -94,7 +94,7 @@ class Login extends Component
                             Login
                         </Typist>
                     </label>
-                    <TextField className="login-form-input" name="username" onChange={this.handleChange} autoFocus label="Username" size="medium" color="secondary"/><br></br>
+                    <TextField className="login-form-input" name="username" onChange={this.handleChange} label="Username" size="medium" color="secondary"/><br></br>
                     <TextField className="login-form-input" name="password" onChange={this.handleChange} type="password" label="Password" size="medium" color="secondary"/><br></br>
                     <Button className="button-login-form-input" type="submit" variant="contained" color="primary">Log In</Button>
                 </form>

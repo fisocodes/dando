@@ -1,6 +1,7 @@
+import Typist from 'react-typist';
+
 import Data from '../../Components/Data';
 import Weather from '../../Components/Weather';
-
 import Star from '../../Components/Star';
 import Dust from '../../Components/Dust';
 import ClockWidget from '../../Components/ClockWidget';
@@ -14,7 +15,11 @@ function Overview(){
             
             <div className="title-section">
                 <h1>D&amp;O</h1>
-                <h2>Welcome to our website</h2>
+                <h2>
+                    <Typist cursor={{show:false}} avgTypingDelay={90}>
+                            Welcome to our website
+                    </Typist>
+                </h2>
                 <h2 className='arrow-pointer'>&#62;</h2>
             </div>
             <div className="description-section">
