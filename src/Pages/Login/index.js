@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Paper, TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
+import Typist from 'react-typist';
 import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
 import { CircularProgress} from '@material-ui/core';
 import { CheckCircle, Error } from '@material-ui/icons';
@@ -87,14 +88,16 @@ class Login extends Component
                         {this.state.dialogActions}
                     </DialogActions>
                 </Dialog>
-                <Paper className="login-paper">
-                    <form className='login-form' onSubmit={this.handleSubmit}>
-                        <label className="form-input">Login</label>
-                        <TextField className="form-input" name="username" onChange={this.handleChange} autoFocus label="Username" size="medium" color="secondary"/><br></br>
-                        <TextField className="form-input" name="password" onChange={this.handleChange} type="password" label="Password" size="medium" color="secondary"/><br></br>
-                        <Button className="form-input" type="submit" variant="contained" color="primary">Log In</Button>
-                    </form>
-                </Paper>
+                <form className='login-form' onSubmit={this.handleSubmit}>
+                    <label className="login-label">
+                        <Typist cursor={{show:false}} avgTypingDelay={175}>
+                            Login
+                        </Typist>
+                    </label>
+                    <TextField className="login-form-input" name="username" onChange={this.handleChange} autoFocus label="Username" size="medium" color="secondary"/><br></br>
+                    <TextField className="login-form-input" name="password" onChange={this.handleChange} type="password" label="Password" size="medium" color="secondary"/><br></br>
+                    <Button className="button-login-form-input" type="submit" variant="contained" color="primary">Log In</Button>
+                </form>
             </div>
         );
     }
