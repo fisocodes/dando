@@ -3,8 +3,8 @@ import { Component } from 'react';
 import './index.css';
 
 class Dust extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
           dustStyle: null,
         }
@@ -14,7 +14,7 @@ class Dust extends Component {
         this.setState({
           dustStyle: {
             left: `${Math.random() * 100- 50}vw`,
-            top: `${Math.random() * document.querySelector('#overviewContainer').clientHeight - 500}px`,
+            top: `${Math.random() * 100 - 25}%`,
             height: `${Math.random()* 200 + 50}vh`,
             width: `${Math.random()* 200 + 50}vh`,
             transform: `rotate(${Math.random()*360}deg)`,

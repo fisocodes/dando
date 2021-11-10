@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { HashRouter } from 'react-router-dom';
 import ReactDom from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -12,38 +12,26 @@ import Main from './Core/Main';
 
 import './index.css';
 
-class App extends Component
-{
-    render()
-    {
-        const parallaxData = [
-            {
-              start: 400,
-              end: 500,
-              properties: [
-                {
-                  startValue: 0.0,
-                  endValue: 1.0,
-                  property: 'scale',
-                },
-              ],
-            },
-          ];
-
-        return(
-            <ThemeProvider theme={theme}>
-                <CssBaseline/>
-                <HashRouter refresh>
-                    <Main/>
-                    <Plx parallaxData={parallaxData} className="fab-showing">
-                        <Fab color="secondary" size="small" onClick={() => window.scrollTo(0,0)}>
-                            <KeyboardArrowUpRoundedIcon color="primary"/>
-                        </Fab>  
-                    </Plx>
-                </HashRouter>
-            </ThemeProvider>
-        );
-    }
+function App(){
+  const parallaxData = [{
+      start: 400,
+      end: 500,
+      properties: [{startValue: 0.0, endValue: 1.0, property: 'scale'}]
+  }];
+  
+  return(
+      <ThemeProvider theme={theme}>
+          <CssBaseline/>
+          <HashRouter refresh>
+              <Main/>
+              <Plx parallaxData={parallaxData} className="fab-showing">
+                  <Fab color="secondary" size="small" onClick={() => window.scrollTo(0,0)}>
+                      <KeyboardArrowUpRoundedIcon color="primary"/>
+                  </Fab>  
+              </Plx>
+          </HashRouter>
+      </ThemeProvider>
+  );
 }
 
 ReactDom.render(<App/>, document.getElementById("root"));

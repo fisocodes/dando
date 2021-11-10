@@ -13,9 +13,10 @@ class Star extends Component
   }
 
   componentDidMount(){
+
     this.setState({
       starWrapperStyle: {
-        top: `${Math.random() * document.querySelector('#overviewContainer').clientHeight}px`,
+        top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100 }%`,
         transform: `scale(${0.25 + Math.random() * 0.75})`,
       }

@@ -1,106 +1,72 @@
-import React, {Component} from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { useState } from 'react';
+import { TextField, Button, Snackbar, CircularProgress, Slide } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import Typist from 'react-typist';
-import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
-import { CircularProgress} from '@material-ui/core';
-import { CheckCircle, Error } from '@material-ui/icons';
-import { Redirect } from 'react-router';
 
 import Axios from '../../Core/Axios';
-import store from '../../Core/Redux/Store';
 
 import './index.css';
 
-class Login extends Component
-{
-    constructor(){
-        super();
-        this.state = {
-            username: "",
-            password: "",
-            isCreateDialogOpen: false,
-            dialogTitle: "Signing In",
-            dialogContent: <CircularProgress color="secondary"/>,
-            dialogActions: null,
-            isRedirect: false,
-            isError: false,
+function SlideTransition(props) {
+    return <Slide {...props} direction="up" />;
+  }
+
+function Login(){
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
+    const [loginButtonContent, setLoginButtonContent] = useState("Log In");
+    const [openSnackBar, setOpenSnackBar] = useState(false);
+    const [snackBarMessage, setSnackBarMessage] = useState(null);
+
+    const handleChange = (event) => {
+        switch(event.target.name){
+            case 'username':
+                setUsername(event.target.value);
+                break;
+            case 'password':
+                setPassword(event.target.value);
+                break;
         }
     }
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value, 
-        });
-    }
-
-    handleOnClose = (event) => {
-        this.setState({
-            isCreateDialogOpen: false,
-            isRedirect: this.state.isError ? false : true,
-            dialogTitle: "Signing In",
-            dialogContent: <CircularProgress color="secondary"/>,
-            dialogActions: null,
-        });
-    }
-
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-
-        this.setState({
-            isCreateDialogOpen: true,
-        });
-
+        setLoginButtonContent(<CircularProgress color="secondary" size={24}/>);
+    
         Axios.post('/users/authenticate', {
-            username: this.state.username === '' ? null : this.state.username,
-            password: this.state.password === '' ? null : this.state.password,
+            username: username === '' ? null : username,
+            password: password === '' ? null : password,
         }, {withCredentials: true})
         .then((response) => {
-            
-            this.setState({
-                dialogTitle: response.data.message,
-                dialogContent: <CheckCircle color="secondary" fontSize="large"/>,
-                dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Noice</Button>,
-                isError: false,
-            });
-
-            store.dispatch({type: 'modal/setMessage', payload: response.data.message});
-            store.dispatch({type: 'user/setUser', payload: response.data.user});
+            console.log(response.data.message);
+            console.log(response.data.user);
+            setLoginButtonContent("Log In");
         })
         .catch((error) =>{
-            this.setState({
-                dialogTitle: "An error ocurred",
-                dialogContent: <div className="dialog-content"><Error color="secondary"/>{error.response.data.message}</div>,
-                dialogActions: <Button variant="contained" color="primary" onClick={this.handleOnClose}>Oh no</Button>,
-                isError: true,
-            });
+            setLoginButtonContent("Log In");
+            console.log(error.response.data.message);
+            setSnackBarMessage(error.response.data.message);
+            setOpenSnackBar(true);
         });
     }
 
-    render()
-    {
-        return(
-            this.state.isRedirect ? <Redirect to="/home"/> :
-            <div className='login-form-wrapper'>
-                <Dialog open={this.state.isCreateDialogOpen}>
-                    <DialogTitle>{this.state.dialogTitle}</DialogTitle>
-                    {this.state.dialogContent}
-                    <DialogActions>
-                        {this.state.dialogActions}
-                    </DialogActions>
-                </Dialog>
-                <form className='login-form' onSubmit={this.handleSubmit}>
-                    <label className="login-label">
-                        <Typist cursor={{show:false}} avgTypingDelay={175}>
-                            Login
-                        </Typist>
-                    </label>
-                    <TextField className="login-form-input" name="username" onChange={this.handleChange} label="Username" size="medium" color="secondary"/><br></br>
-                    <TextField className="login-form-input" name="password" onChange={this.handleChange} type="password" label="Password" size="medium" color="secondary"/><br></br>
-                    <Button className="button-login-form-input" type="submit" variant="contained" color="primary">Log In</Button>
-                </form>
-            </div>
-        );
-    }
+    return(
+        <>
+            <Snackbar TransitionComponent={SlideTransition} open={openSnackBar} autoHideDuration={3000} onClose={() => {setOpenSnackBar(false)}}>
+                <Alert severity="error">{snackBarMessage}</Alert>
+            </Snackbar>
+            <form className='login-form' onSubmit={handleSubmit}>
+                <label className="login-label">
+                    <Typist cursor={{show:false}} avgTypingDelay={175}>
+                        Login
+                    </Typist>
+                </label>
+                <TextField className="login-form-input" name="username" onChange={handleChange} label="Username" size="medium" color="secondary" required/><br></br>
+                <TextField className="login-form-input" name="password" onChange={handleChange} type="password" label="Password" size="medium" color="secondary" required/><br></br>
+                <Button className="button-login-form-input" type="submit" variant="contained" color="primary">{loginButtonContent}</Button>
+            </form>
+        </>
+    );
 }
 
 export default Login;

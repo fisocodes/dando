@@ -1,25 +1,16 @@
-import React, {Component} from 'react';
+import { useState } from 'react';
 
 import Landing from '../../Core/Landing';
 import Client from '../../Core/Client';
 
-class Main extends Component{
+function Main(){
+    const [user, setUser] = useState(null);
 
-    constructor(){
-        super();
-
-        this.state = {
-            user: null,
-        };
-    }
-
-    render() {
-        switch (this.state.user) {
-            case null:
-                    return <Landing/>;
-            default:
-                    return <Client/>;
-        }
+    switch (user) {
+        case null:
+                return <Landing/>;
+        default:
+                return <Client/>;
     }
 }
 

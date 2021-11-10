@@ -6,7 +6,7 @@ import Dust from '../Dust';
 import Star from '../Star';
 import store from '../../Core/Redux/Store';
 
-import './index.css';
+import './index.scss';
 
 class ModalMessage extends Component{
     constructor(){

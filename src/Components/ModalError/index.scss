@@ -1,0 +1,28 @@
+.modal-error-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .modal-error-background{
+        background-color: darkred;
+        height: 100%;
+        width: 100%;
+    }
+
+    .modal-error-message{
+        font-family: LittleMiracles;
+        position: absolute;
+    }
+
+    .modal-error-submessage{
+        position: absolute;
+        bottom: 50px;
+    }
+}
+
+@font-face
+{
+    font-family: LittleMiracles;
+    src: url("../../fonts/LittleMiracles.ttf");
+}
