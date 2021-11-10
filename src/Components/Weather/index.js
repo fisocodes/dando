@@ -40,7 +40,8 @@ class Weather extends Component{
                                         {day === this.state.forecastData[1] ? <div>Tomorrow</div> : null}
                                         {day !== this.state.forecastData[0] && day !== this.state.forecastData[1] ? <Clock date={day.datetime} format={'dddd'}/> : null}
                                         <img className='weather-icon' alt='Weather Icon' src={`https://www.weatherbit.io/static/img/icons/${day.weather.icon}.png`}/>
-                                        <h5>{`${day.max_temp} °C`}</h5>
+                                        <h5>{`max ${day.max_temp} °C`}</h5>
+                                        <h5>{`min ${day.min_temp} °C`}</h5>
                                         <h3>{day.weather.description}</h3>
                                     </span>
                                 );
