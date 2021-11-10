@@ -5,6 +5,7 @@ import Client from '../../Core/Client';
 
 function Main(){
     const [user, setUser] = useState(null);
+    setUser(null);
 
     switch (user) {
         case null:

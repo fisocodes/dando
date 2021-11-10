@@ -26,6 +26,7 @@ function Login(){
             case 'password':
                 setPassword(event.target.value);
                 break;
+            default:
         }
     }
 
