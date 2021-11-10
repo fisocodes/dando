@@ -4,8 +4,7 @@ import Landing from '../../Core/Landing';
 import Client from '../../Core/Client';
 
 function Main(){
-    const [user, setUser] = useState(null);
-    setUser(null);
+    const [user] = useState(null);
 
     switch (user) {
         case null:
