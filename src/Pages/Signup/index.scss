@@ -1,0 +1,53 @@
+.signup-form-wrapper{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .signup-title-label{
+        font-size: 2rem;
+        font-family: LittleMiracles;
+    }
+
+    .signup-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .signup-form-carousel{
+            position: relative;
+            animation-name: fade-in;
+            animation-duration: 2s;
+    
+            .signup-form-step{
+                margin-left: -2rem;
+                margin-right: -2rem;
+            }
+        }
+
+        .signup-form-input-button{
+            margin-top: 2rem !important;
+        }
+    }
+
+}
+
+@keyframes fade-in {
+    0%{
+        top: -50px;
+        opacity: 0.0;
+    }
+
+    100%{
+        top: 0px;
+        opacity: 1.0;
+    }
+}
+
+@font-face
+{
+    font-family: LittleMiracles;
+    src: url("../../fonts/LittleMiracles.ttf");
+}

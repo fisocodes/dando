@@ -9,6 +9,7 @@
 }
 
 .login-form{
+    height: 90vh;
     margin-bottom: 1rem;
     margin-top: 1rem;
     padding: 2rem;
@@ -38,6 +39,7 @@
 }
 
 .button-login-form-input{
+    margin: 1rem !important;
     animation: fade-in;
     animation-duration: 2s;
 }

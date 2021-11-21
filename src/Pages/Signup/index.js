@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import { Paper, TextField, Button } from '@material-ui/core';
-import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import { CircularProgress} from '@material-ui/core';
 import { CheckCircle, Error } from '@material-ui/icons';
-import { Redirect } from 'react-router';
+import Typist from 'react-typist';
+import { Carousel } from 'react-responsive-carousel';
 
 import Axios from '../../Core/Axios';
 
-import './index.css';
+import './index.scss';
 
 class Signup extends Component
 {
@@ -81,27 +81,39 @@ class Signup extends Component
     render()
     {
         return(
-            this.state.isRedirect ? <Redirect to="/log-in"/> : 
-            <div className='login-form-wrapper'>
-                <Dialog open={this.state.isCreateDialogOpen}>
-                    <DialogTitle>{this.state.dialogTitle}</DialogTitle>
-                    {this.state.dialogContent}
-                    <DialogActions>
-                        {this.state.dialogActions}
-                    </DialogActions>
-                </Dialog>
-                <Paper className="login-paper">
-                    <form className='login-form' onSubmit={this.handleSubmit}>
-                        <label className="form-input">Sign Up</label>
-                        <TextField name="username" required onChange={this.handleChange} className="form-input" autoFocus label="Username" size="medium" color="secondary"/><br></br>
-                        <TextField name="password" required onChange={this.handleChange} className="form-input" type="password" label="Password" size="medium" color="secondary"/><br></br>
-                        <TextField name="name" onChange={this.handleChange} className="form-input" label="Name" size="medium" color="secondary"/><br></br>
-                        <TextField name="surname" onChange={this.handleChange} className="form-input" label="Surname" size="medium" color="secondary"/><br></br>
-                        <TextField name="dob" onChange={this.handleChange} className="form-input" type="date" label="DOB" size="medium" color="secondary"/><br></br>
-                        <TextField name="token" onChange={this.handleChange} className="form-input" type="password" required label="Token" size="medium" color="secondary"/><br></br>
-                        <Button className="form-input" type="submit" variant="contained" color="primary">Sign Up</Button>
-                    </form>
-                </Paper>
+            <div className="signup-form-wrapper">
+                <Typist cursor={{show:false}} avgTypingDelay={175}>
+                    <label className="signup-title-label">Sign Up</label>
+                </Typist>
+                <form className='signup-form' onSubmit={this.handleSubmit}>
+                    <Carousel className="signup-form-carousel" showThumbs={false} showStatus={false} showIndicators={false}>
+                        <div className="signup-form-step">
+                            <h3>You need a super username</h3>
+                            <TextField name="username" required onChange={this.handleChange} className="signup-form-input" label="Username" size="medium" color="secondary"/>
+                        </div>
+                        <div className="signup-form-step">
+                            <h3>Your password must be secret</h3>
+                            <TextField name="password" required onChange={this.handleChange} className="signup-form-input" type="password" label="Password" size="medium" color="secondary"/>
+                        </div>
+                        <div className="signup-form-step">
+                            <h3>What's your name?</h3>
+                            <TextField name="name" required onChange={this.handleChange} className="signup-form-input" label="Name" size="medium" color="secondary"/>
+                        </div>
+                        <div className="signup-form-step">
+                            <h3>What about your surname?</h3>
+                            <TextField name="surname"  required onChange={this.handleChange} className="signup-form-input" label="Surname" size="medium" color="secondary"/>
+                        </div>
+                        <div className="signup-form-step">
+                            <h3>When were you born?</h3>
+                            <TextField name="dob" required onChange={this.handleChange} className="signup-form-input" type="date" size="medium" color="secondary"/>
+                        </div>
+                        <div className="signup-form-step">
+                            <h3>Finally, I need a token</h3>
+                            <TextField name="token" onChange={this.handleChange} className="signup-form-input" type="password" required label="Token" size="medium" color="secondary"/>
+                        </div >
+                    </Carousel>
+                    <Button className="signup-form-input-button" type="submit" variant="contained" color="primary">Sign Up</Button>
+                </form>
             </div>
         );
     }
