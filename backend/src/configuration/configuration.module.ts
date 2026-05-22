@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { ConfigurationService } from "./configuration.service";
 import { validate } from "./configuration.validation";
 
 @Module({
@@ -9,5 +10,7 @@ import { validate } from "./configuration.validation";
 			validate,
 		}),
 	],
+	providers: [ConfigurationService],
+	exports: [ConfigurationService],
 })
 export class ConfigurationModule {}

@@ -1,7 +1,26 @@
 import { plainToInstance } from "class-transformer";
-import { validateSync } from "class-validator";
+import { IsInt, IsNotEmpty, IsString, validateSync } from "class-validator";
 
-export class EnvironmentVariables {}
+export class EnvironmentVariables {
+	@IsString()
+	@IsNotEmpty()
+	DATABASE_HOST?: string;
+
+	@IsInt()
+	DATABASE_PORT?: number;
+
+	@IsString()
+	@IsNotEmpty()
+	DATABASE_USERNAME?: string;
+
+	@IsString()
+	@IsNotEmpty()
+	DATABASE_PASSWORD?: string;
+
+	@IsString()
+	@IsNotEmpty()
+	DATABASE_NAME?: string;
+}
 
 export function validate(config: Record<string, unknown>) {
 	const validatedConfig = plainToInstance(EnvironmentVariables, config, {

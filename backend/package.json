@@ -3,16 +3,20 @@
 	"scripts": {
 		"build": "nest build",
 		"start:dev": "nest start --watch",
-		"start:prod": "node ."
+		"start:prod": "node .",
+		"migration:generate": "typeorm migration:generate src/database/migrations/$npm_config_name -d src/database/database.datasource.ts"
 	},
 	"dependencies": {
 		"@nestjs/common": "^11.1.23",
 		"@nestjs/config": "^4.0.4",
 		"@nestjs/core": "^11.1.23",
 		"@nestjs/platform-express": "^11.1.23",
+		"@nestjs/typeorm": "^11.0.1",
 		"class-transformer": "^0.5.1",
 		"class-validator": "^0.15.1",
-		"reflect-metadata": "^0.2.2"
+		"pg": "^8.21.0",
+		"reflect-metadata": "^0.2.2",
+		"typeorm": "^1.0.0"
 	},
 	"devDependencies": {
 		"@nestjs/cli": "^11.0.21",
