@@ -1,4 +1,4 @@
-import type { Repository } from "typeorm";
+import type { FindOptionsWhere, Repository } from "typeorm";
 import type { CursorPaginationQueryDto } from "../dtos/cursor-pagination-query.dto";
 import type { CursorPaginationResponseDto } from "../dtos/cursor-pagination-response.dto";
 import type { OffsetPaginationQueryDto } from "../dtos/offset-pagination-query.dto";
@@ -9,15 +9,16 @@ import { CursorPaginationDirection } from "../enums/cursor-pagination-direction.
 export abstract class PaginationService<T extends BaseEntity, ResponseDto> {
 	constructor(protected readonly repository: Repository<T>) {}
 
-	async findWithOffset(
-		query: OffsetPaginationQueryDto,
+	async findWithOffset<QueryDto extends OffsetPaginationQueryDto>(
+		query: QueryDto,
 	): Promise<OffsetPaginationResponseDto<ResponseDto>> {
-		const { page, limit } = query;
+		const { page, limit, ...filters } = query;
 		const skip = (page - 1) * limit;
 
 		const [entities, total] = await this.repository.findAndCount({
 			skip,
 			take: limit,
+			where: filters as FindOptionsWhere<T>,
 		});
 
 		const totalPages = Math.ceil(total / limit);
@@ -33,18 +34,22 @@ export abstract class PaginationService<T extends BaseEntity, ResponseDto> {
 		};
 	}
 
-	async findWithCursor(
-		query: CursorPaginationQueryDto,
+	async findWithCursor<QueryDto extends CursorPaginationQueryDto>(
+		query: QueryDto,
 	): Promise<CursorPaginationResponseDto<ResponseDto>> {
-		const { cursor, limit, direction } = query;
+		const { cursor, limit, direction, ...filters } = query;
 
 		const queryBuilder = this.repository.createQueryBuilder("entity");
 
+		if (Object.keys(filters).length > 0) {
+			queryBuilder.where(filters);
+		}
+
 		if (cursor) {
 			if (direction === CursorPaginationDirection.NEXT) {
-				queryBuilder.where("entity.id > :cursor", { cursor });
+				queryBuilder.andWhere("entity.id > :cursor", { cursor });
 			} else {
-				queryBuilder.where("entity.id < :cursor", { cursor });
+				queryBuilder.andWhere("entity.id < :cursor", { cursor });
 			}
 		}
 
