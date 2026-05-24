@@ -22,26 +22,29 @@ export function createCrudController<
 		) {}
 
 		@Post()
-		create(@Body() dto: CreateDto): Promise<ResponseDto> {
-			return this.service.create(dto);
+		async create(@Body() dto: CreateDto): Promise<ResponseDto> {
+			const [responseDto] = await this.service.create([dto]);
+			return responseDto;
 		}
 
 		@Get(":id")
-		read(@Param("id", ParseUUIDPipe) id: string): Promise<ResponseDto> {
-			return this.service.readOrThrow(id);
+		async read(@Param("id", ParseUUIDPipe) id: string): Promise<ResponseDto> {
+			const [responseDto] = await this.service.readOrThrow([id]);
+			return responseDto;
 		}
 
 		@Patch(":id")
-		update(
+		async update(
 			@Param("id", ParseUUIDPipe) id: string,
 			@Body() dto: UpdateDto,
 		): Promise<ResponseDto> {
-			return this.service.update(id, dto);
+			const [responseDto] = await this.service.update([{ ...dto, id }]);
+			return responseDto;
 		}
 
 		@Delete(":id")
 		delete(@Param("id", ParseUUIDPipe) id: string): Promise<void> {
-			return this.service.delete(id);
+			return this.service.delete([id]);
 		}
 	}
 

@@ -1,5 +1,11 @@
 import { NotFoundException } from "@nestjs/common";
-import type { FindOptionsWhere, Repository } from "typeorm";
+import {
+	type DataSource,
+	type FindOptionsWhere,
+	In,
+	type QueryRunner,
+	type Repository,
+} from "typeorm";
 import type { BaseEntity } from "../entities/base.entity";
 
 export abstract class CrudService<
@@ -8,36 +14,61 @@ export abstract class CrudService<
 	UpdateDto,
 	ResponseDto,
 > {
-	constructor(protected readonly repository: Repository<T>) {}
+	constructor(
+		protected readonly repository: Repository<T>,
+		protected readonly dataSource: DataSource,
+	) {}
 
-	abstract create(dto: CreateDto): Promise<ResponseDto>;
+	abstract create(dtos: CreateDto[]): Promise<ResponseDto[]>;
 
-	async read(id: string): Promise<ResponseDto | null> {
-		const entity = await this.repository.findOneBy({
-			id,
+	async read(ids: string[]): Promise<ResponseDto[]> {
+		const entities = await this.repository.findBy({
+			id: In(ids),
 		} as FindOptionsWhere<T>);
-		if (!entity) return null;
-		return this.toResponse(entity);
+		return entities.map((entity) => this.toResponse(entity));
 	}
 
-	async readOrThrow(id: string): Promise<ResponseDto> {
-		const entity = await this.read(id);
+	async readOrThrow(ids: string[]): Promise<ResponseDto[]> {
+		const entities = await this.repository.findBy({
+			id: In(ids),
+		} as FindOptionsWhere<T>);
+		if (entities.length !== ids.length) throw new NotFoundException();
 
-		if (!entity) throw new NotFoundException();
-
-		return entity;
+		return entities.map((entity) => this.toResponse(entity));
 	}
 
-	abstract update(id: string, dto: UpdateDto): Promise<ResponseDto>;
+	abstract update(
+		dtos: Array<UpdateDto & { id: string }>,
+	): Promise<ResponseDto[]>;
 
-	async delete(id: string): Promise<void> {
-		const entity = await this.repository.findOneBy({
-			id,
-		} as FindOptionsWhere<T>);
-
-		if (!entity) throw new NotFoundException();
-		await this.repository.softRemove(entity);
+	async delete(ids: string[]): Promise<void> {
+		await this.withTransaction(async (queryRunner) => {
+			const entities = await queryRunner.manager.findBy(
+				this.repository.target,
+				{ id: In(ids) } as FindOptionsWhere<T>,
+			);
+			if (entities.length !== ids.length) throw new NotFoundException();
+			await queryRunner.manager.softRemove<T>(entities);
+		});
 	}
 
 	abstract toResponse(entity: T): ResponseDto;
+
+	protected async withTransaction<R>(
+		fn: (queryRunner: QueryRunner) => Promise<R>,
+	): Promise<R> {
+		const queryRunner = this.dataSource.createQueryRunner();
+		await queryRunner.connect();
+		await queryRunner.startTransaction();
+		try {
+			const result = await fn(queryRunner);
+			await queryRunner.commitTransaction();
+			return result;
+		} catch (e) {
+			await queryRunner.rollbackTransaction();
+			throw e;
+		} finally {
+			await queryRunner.release();
+		}
+	}
 }
