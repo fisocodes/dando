@@ -8,8 +8,12 @@ import {
 	Patch,
 	Post,
 	Query,
+	SetMetadata,
 	ValidationPipe,
 } from "@nestjs/common";
+import { CaslSubject } from "../casl/constants/casl-subject.constant";
+import { CaslUser } from "../casl/interfaces/casl-user.interface";
+import { User } from "../decorators/user.decorator";
 import type { CursorPaginationQueryDto } from "../dtos/cursor-pagination-query.dto";
 import type { CursorPaginationResponseDto } from "../dtos/cursor-pagination-response.dto";
 import type { OffsetPaginationQueryDto } from "../dtos/offset-pagination-query.dto";
@@ -28,7 +32,9 @@ export function createController<
 >(
 	offsetQueryDtoClass: new () => OffsetQueryDto,
 	cursorQueryDtoClass: new () => CursorQueryDto,
+	subject: CaslSubject,
 ) {
+	@SetMetadata("casl_subject", subject)
 	abstract class Controller {
 		constructor(
 			readonly crudservice: CrudService<T, CreateDto, UpdateDto, ResponseDto>,
@@ -36,8 +42,11 @@ export function createController<
 		) {}
 
 		@Post("bulk")
-		createMany(@Body() dtos: CreateDto[]): Promise<ResponseDto[]> {
-			return this.crudservice.create(dtos);
+		createMany(
+			@Body() dtos: CreateDto[],
+			@User() user: CaslUser,
+		): Promise<ResponseDto[]> {
+			return this.crudservice.create(dtos, user);
 		}
 
 		@Get("bulk")
@@ -47,15 +56,17 @@ export function createController<
 				new ParseArrayPipe({ items: ParseUUIDPipe, separator: "," }),
 			)
 			ids: string[],
+			@User() user: CaslUser,
 		): Promise<ResponseDto[]> {
-			return this.crudservice.readOrThrow(ids);
+			return this.crudservice.readOrThrow(ids, user);
 		}
 
 		@Patch("bulk")
 		updateMany(
 			@Body() dtos: Array<UpdateDto & { id: string }>,
+			@User() user: CaslUser,
 		): Promise<ResponseDto[]> {
-			return this.crudservice.update(dtos);
+			return this.crudservice.update(dtos, user);
 		}
 
 		@Delete("bulk")
@@ -65,8 +76,9 @@ export function createController<
 				new ParseArrayPipe({ items: ParseUUIDPipe, separator: "," }),
 			)
 			ids: string[],
+			@User() user: CaslUser,
 		): Promise<void> {
-			return this.crudservice.delete(ids);
+			return this.crudservice.delete(ids, user);
 		}
 
 		@Get("offset")
@@ -96,14 +108,20 @@ export function createController<
 		}
 
 		@Post()
-		async create(@Body() dto: CreateDto): Promise<ResponseDto> {
-			const [result] = await this.crudservice.create([dto]);
+		async create(
+			@Body() dto: CreateDto,
+			@User() user: CaslUser,
+		): Promise<ResponseDto> {
+			const [result] = await this.crudservice.create([dto], user);
 			return result;
 		}
 
 		@Get(":id")
-		async read(@Param("id", ParseUUIDPipe) id: string): Promise<ResponseDto> {
-			const [result] = await this.crudservice.readOrThrow([id]);
+		async read(
+			@Param("id", ParseUUIDPipe) id: string,
+			@User() user: CaslUser,
+		): Promise<ResponseDto> {
+			const [result] = await this.crudservice.readOrThrow([id], user);
 			return result;
 		}
 
@@ -111,14 +129,18 @@ export function createController<
 		async update(
 			@Param("id", ParseUUIDPipe) id: string,
 			@Body() dto: UpdateDto,
+			@User() user: CaslUser,
 		): Promise<ResponseDto> {
-			const [result] = await this.crudservice.update([{ ...dto, id }]);
+			const [result] = await this.crudservice.update([{ ...dto, id }], user);
 			return result;
 		}
 
 		@Delete(":id")
-		delete(@Param("id", ParseUUIDPipe) id: string): Promise<void> {
-			return this.crudservice.delete([id]);
+		delete(
+			@Param("id", ParseUUIDPipe) id: string,
+			@User() user: CaslUser,
+		): Promise<void> {
+			return this.crudservice.delete([id], user);
 		}
 	}
 

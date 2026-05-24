@@ -1,4 +1,5 @@
-import { NotFoundException } from "@nestjs/common";
+import { subject } from "@casl/ability";
+import { ForbiddenException, NotFoundException } from "@nestjs/common";
 import {
 	type DataSource,
 	type FindOptionsWhere,
@@ -6,6 +7,10 @@ import {
 	type QueryRunner,
 	type Repository,
 } from "typeorm";
+import { CaslAbilityFactory } from "../casl/casl-ability.factory";
+import { CaslAction } from "../casl/constants/casl-action.constant";
+import { CaslSubject } from "../casl/constants/casl-subject.constant";
+import { CaslUser } from "../casl/interfaces/casl-user.interface";
 import type { BaseEntity } from "../entities/base.entity";
 
 export abstract class CrudService<
@@ -17,37 +22,61 @@ export abstract class CrudService<
 	constructor(
 		protected readonly repository: Repository<T>,
 		protected readonly dataSource: DataSource,
+		protected readonly caslAbilityFactory: CaslAbilityFactory,
 	) {}
+	abstract readonly caslSubject: CaslSubject;
 
-	abstract create(dtos: CreateDto[]): Promise<ResponseDto[]>;
+	private checkAbility(action: CaslAction, entity: T, user?: CaslUser) {
+		if (!user) return;
+		const ability = this.caslAbilityFactory.createForUser(user);
+		if (
+			!ability.can(
+				action,
+				subject(this.caslSubject, entity as Record<string, unknown>),
+			)
+		) {
+			throw new ForbiddenException();
+		}
+	}
 
-	async read(ids: string[]): Promise<ResponseDto[]> {
+	abstract create(dtos: CreateDto[], user?: CaslUser): Promise<ResponseDto[]>;
+
+	async read(ids: string[], user?: CaslUser): Promise<ResponseDto[]> {
 		const entities = await this.repository.findBy({
 			id: In(ids),
 		} as FindOptionsWhere<T>);
+		entities.forEach((entity) => {
+			this.checkAbility(CaslAction.READ, entity, user);
+		});
 		return entities.map((entity) => this.toResponse(entity));
 	}
 
-	async readOrThrow(ids: string[]): Promise<ResponseDto[]> {
+	async readOrThrow(ids: string[], user?: CaslUser): Promise<ResponseDto[]> {
 		const entities = await this.repository.findBy({
 			id: In(ids),
 		} as FindOptionsWhere<T>);
 		if (entities.length !== ids.length) throw new NotFoundException();
-
+		entities.forEach((entity) => {
+			this.checkAbility(CaslAction.READ, entity, user);
+		});
 		return entities.map((entity) => this.toResponse(entity));
 	}
 
 	abstract update(
 		dtos: Array<UpdateDto & { id: string }>,
+		user?: CaslUser,
 	): Promise<ResponseDto[]>;
 
-	async delete(ids: string[]): Promise<void> {
+	async delete(ids: string[], user?: CaslUser): Promise<void> {
 		await this.withTransaction(async (queryRunner) => {
 			const entities = await queryRunner.manager.findBy(
 				this.repository.target,
 				{ id: In(ids) } as FindOptionsWhere<T>,
 			);
 			if (entities.length !== ids.length) throw new NotFoundException();
+			entities.forEach((entity) => {
+				this.checkAbility(CaslAction.DELETE, entity, user);
+			});
 			await queryRunner.manager.softRemove<T>(entities);
 		});
 	}

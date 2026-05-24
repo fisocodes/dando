@@ -6,7 +6,9 @@ import {
 	ParseUUIDPipe,
 	Patch,
 	Post,
+	SetMetadata,
 } from "@nestjs/common";
+import { CaslSubject } from "../casl/constants/casl-subject.constant";
 import type { BaseEntity } from "../entities/base.entity";
 import type { CrudService } from "../services/crud.service";
 
@@ -15,7 +17,8 @@ export function createCrudController<
 	CreateDto,
 	UpdateDto,
 	ResponseDto,
->() {
+>(subject: CaslSubject) {
+	@SetMetadata("casl_subject", subject)
 	abstract class CrudController {
 		constructor(
 			readonly service: CrudService<T, CreateDto, UpdateDto, ResponseDto>,

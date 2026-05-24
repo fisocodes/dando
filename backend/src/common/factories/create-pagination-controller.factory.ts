@@ -1,4 +1,5 @@
-import { Get, Query, ValidationPipe } from "@nestjs/common";
+import { Get, Query, SetMetadata, ValidationPipe } from "@nestjs/common";
+import { CaslSubject } from "../casl/constants/casl-subject.constant";
 import type { CursorPaginationQueryDto } from "../dtos/cursor-pagination-query.dto";
 import type { CursorPaginationResponseDto } from "../dtos/cursor-pagination-response.dto";
 import type { OffsetPaginationQueryDto } from "../dtos/offset-pagination-query.dto";
@@ -14,7 +15,9 @@ export function createPaginationController<
 >(
 	offsetQueryDtoClass: new () => OffsetQueryDto,
 	cursorQuerytDtoClass: new () => CursorQueryDto,
+	subject: CaslSubject,
 ) {
+	@SetMetadata("casl_subject", subject)
 	abstract class PaginationController {
 		constructor(readonly service: PaginationService<T, ResponseDto>) {}
 

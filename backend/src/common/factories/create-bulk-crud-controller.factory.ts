@@ -7,7 +7,9 @@ import {
 	Patch,
 	Post,
 	Query,
+	SetMetadata,
 } from "@nestjs/common";
+import { CaslSubject } from "../casl/constants/casl-subject.constant";
 import type { BaseEntity } from "../entities/base.entity";
 import type { CrudService } from "../services/crud.service";
 
@@ -16,7 +18,8 @@ export function createBulkCrudController<
 	CreateDto,
 	UpdateDto,
 	ResponseDto,
->() {
+>(subject: CaslSubject) {
+	@SetMetadata("casl_subject", subject)
 	abstract class BulkCrudController {
 		constructor(
 			readonly service: CrudService<T, CreateDto, UpdateDto, ResponseDto>,
