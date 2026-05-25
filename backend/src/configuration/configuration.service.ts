@@ -8,6 +8,14 @@ export class ConfigurationService {
 		private configService: ConfigService<EnvironmentVariables, true>,
 	) {}
 
+	get dandoVersion(): string {
+		return this.configService.get("DANDO_VERSION");
+	}
+
+	get dandoPort(): string {
+		return this.configService.get("DANDO_PORT");
+	}
+
 	get databaseHost(): string {
 		return this.configService.get("DATABASE_HOST");
 	}
