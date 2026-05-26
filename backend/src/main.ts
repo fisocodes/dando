@@ -1,3 +1,4 @@
+import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import type { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
@@ -18,6 +19,7 @@ async function bootstrap() {
 	const documentFactory = () => SwaggerModule.createDocument(app, config);
 	SwaggerModule.setup("swagger", app, documentFactory);
 
+	app.useGlobalPipes(new ValidationPipe({ transform: true }));
 	await app.listen(configurationService.dandoPort);
 }
 bootstrap();

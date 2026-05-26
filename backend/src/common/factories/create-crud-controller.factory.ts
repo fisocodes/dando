@@ -9,6 +9,7 @@ import {
 	SetMetadata,
 } from "@nestjs/common";
 import { CaslSubject } from "../casl/constants/casl-subject.constant";
+import { BaseResponseDto } from "../dtos/base-response.dto";
 import type { BaseEntity } from "../entities/base.entity";
 import type { CrudService } from "../services/crud.service";
 
@@ -16,7 +17,7 @@ export function createCrudController<
 	T extends BaseEntity,
 	CreateDto,
 	UpdateDto,
-	ResponseDto,
+	ResponseDto extends BaseResponseDto,
 >(subject: CaslSubject) {
 	@SetMetadata("casl_subject", subject)
 	abstract class CrudController {

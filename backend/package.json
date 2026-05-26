@@ -4,7 +4,9 @@
 		"build": "nest build",
 		"start:dev": "nest start --watch",
 		"start:prod": "node .",
-		"migration:generate": "typeorm migration:generate src/database/migrations/$npm_config_name -d src/database/database.datasource.ts"
+		"migration:generate": "typeorm-ts-node-commonjs migration:generate src/database/migrations/$npm_config_name -d src/database/database.datasource.ts",
+		"migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/database.datasource.ts",
+		"migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/database/database.datasource.ts"
 	},
 	"dependencies": {
 		"@casl/ability": "^7.0.0",
@@ -24,6 +26,7 @@
 		"@nestjs/cli": "^11.0.21",
 		"@nestjs/schematics": "^11.1.0",
 		"@types/node": "^25.9.1",
+		"ts-node": "^10.9.2",
 		"typescript": "^6.0.3"
 	}
 }

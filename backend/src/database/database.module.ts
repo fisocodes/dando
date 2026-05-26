@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigurationModule } from "../configuration/configuration.module";
-import type { ConfigurationService } from "../configuration/configuration.service";
+import { ConfigurationService } from "../configuration/configuration.service";
 
 @Module({
 	imports: [
@@ -16,6 +16,7 @@ import type { ConfigurationService } from "../configuration/configuration.servic
 				database: configurationService.databaseName,
 				autoLoadEntities: true,
 			}),
+			inject: [ConfigurationService],
 		}),
 	],
 })

@@ -11,13 +11,14 @@ import { CaslAbilityFactory } from "../casl/casl-ability.factory";
 import { CaslAction } from "../casl/constants/casl-action.constant";
 import { CaslSubject } from "../casl/constants/casl-subject.constant";
 import { CaslUser } from "../casl/interfaces/casl-user.interface";
+import { BaseResponseDto } from "../dtos/base-response.dto";
 import type { BaseEntity } from "../entities/base.entity";
 
 export abstract class CrudService<
 	T extends BaseEntity,
 	CreateDto,
 	UpdateDto,
-	ResponseDto,
+	ResponseDto extends BaseResponseDto,
 > {
 	constructor(
 		protected readonly repository: Repository<T>,

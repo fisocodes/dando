@@ -19,6 +19,9 @@
 			"recommended": true,
 			"style": {
 				"useImportType": "off"
+			},
+			"complexity": {
+				"noUselessConstructor": "off"
 			}
 		}
 	},

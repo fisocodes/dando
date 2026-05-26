@@ -1,7 +1,8 @@
-import { IsEnum, IsInt, IsOptional, IsUUID, Max, Min } from "class-validator";
+import { IsEnum, IsOptional, IsUUID } from "class-validator";
 import { CursorPaginationDirection } from "../enums/cursor-pagination-direction.enum";
+import { PaginationQueryDto } from "./pagination-query.dto";
 
-export class CursorPaginationQueryDto {
+export class CursorPaginationQueryDto extends PaginationQueryDto {
 	@IsOptional()
 	@IsUUID()
 	cursor?: string;
@@ -9,10 +10,4 @@ export class CursorPaginationQueryDto {
 	@IsEnum(CursorPaginationDirection)
 	@IsOptional()
 	direction: CursorPaginationDirection = CursorPaginationDirection.NEXT;
-
-	@IsInt()
-	@IsOptional()
-	@Min(1)
-	@Max(200)
-	limit: number = 10;
 }

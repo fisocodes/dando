@@ -1,4 +1,11 @@
-import type { FindOptionsWhere, Repository } from "typeorm";
+import {
+	Between,
+	type FindOptionsWhere,
+	LessThanOrEqual,
+	MoreThanOrEqual,
+	type Repository,
+} from "typeorm";
+import { BaseResponseDto } from "../dtos/base-response.dto";
 import type { CursorPaginationQueryDto } from "../dtos/cursor-pagination-query.dto";
 import type { CursorPaginationResponseDto } from "../dtos/cursor-pagination-response.dto";
 import type { OffsetPaginationQueryDto } from "../dtos/offset-pagination-query.dto";
@@ -6,8 +13,58 @@ import type { OffsetPaginationResponseDto } from "../dtos/offset-pagination-resp
 import type { BaseEntity } from "../entities/base.entity";
 import { CursorPaginationDirection } from "../enums/cursor-pagination-direction.enum";
 
-export abstract class PaginationService<T extends BaseEntity, ResponseDto> {
+export abstract class PaginationService<
+	T extends BaseEntity,
+	ResponseDto extends BaseResponseDto,
+> {
 	constructor(protected readonly repository: Repository<T>) {}
+
+	protected buildSearchFilter(
+		_search: string,
+	): FindOptionsWhere<T> | FindOptionsWhere<T>[] {
+		return {};
+	}
+
+	private buildFilters(query: Record<string, unknown>) {
+		const {
+			createdAtFrom,
+			createdAtTo,
+			updatedAtFrom,
+			updatedAtTo,
+			search,
+			...rest
+		} = query;
+		const filters: Record<string, unknown> = { ...rest };
+
+		if (createdAtFrom && createdAtTo) {
+			filters.createdAt = Between(createdAtFrom as Date, createdAtTo as Date);
+		} else if (createdAtFrom) {
+			filters.createdAt = MoreThanOrEqual(createdAtFrom as Date);
+		} else if (createdAtTo) {
+			filters.createdAt = LessThanOrEqual(createdAtTo as Date);
+		}
+
+		if (updatedAtFrom && updatedAtTo) {
+			filters.updatedAt = Between(updatedAtFrom as Date, updatedAtTo as Date);
+		} else if (updatedAtFrom) {
+			filters.updatedAt = MoreThanOrEqual(updatedAtFrom as Date);
+		} else if (updatedAtTo) {
+			filters.updatedAt = LessThanOrEqual(updatedAtTo as Date);
+		}
+
+		if (search) {
+			const searchFilter = this.buildSearchFilter(search as string);
+			if (Array.isArray(searchFilter)) {
+				return searchFilter.map((f) => ({
+					...filters,
+					...f,
+				})) as unknown as Record<string, unknown>;
+			}
+			Object.assign(filters, searchFilter);
+		}
+
+		return filters;
+	}
 
 	async findWithOffset<QueryDto extends OffsetPaginationQueryDto>(
 		query: QueryDto,
@@ -18,7 +75,7 @@ export abstract class PaginationService<T extends BaseEntity, ResponseDto> {
 		const [entities, total] = await this.repository.findAndCount({
 			skip,
 			take: limit,
-			where: filters as FindOptionsWhere<T>,
+			where: this.buildFilters(filters) as FindOptionsWhere<T>,
 		});
 
 		const totalPages = Math.ceil(total / limit);
@@ -42,7 +99,7 @@ export abstract class PaginationService<T extends BaseEntity, ResponseDto> {
 		const queryBuilder = this.repository.createQueryBuilder("entity");
 
 		if (Object.keys(filters).length > 0) {
-			queryBuilder.where(filters);
+			queryBuilder.where(this.buildFilters(filters) as FindOptionsWhere<T>);
 		}
 
 		if (cursor) {
