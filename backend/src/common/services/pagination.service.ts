@@ -1,3 +1,4 @@
+import { plainToInstance } from "class-transformer";
 import {
 	Between,
 	type FindOptionsWhere,
@@ -17,7 +18,10 @@ export abstract class PaginationService<
 	T extends BaseEntity,
 	ResponseDto extends BaseResponseDto,
 > {
-	constructor(protected readonly repository: Repository<T>) {}
+	constructor(
+		protected readonly repository: Repository<T>,
+		protected readonly responseDtoClass: new () => ResponseDto,
+	) {}
 
 	protected buildSearchFilter(
 		_search: string,
@@ -136,5 +140,7 @@ export abstract class PaginationService<
 		};
 	}
 
-	abstract toResponse(entity: T): ResponseDto;
+	protected toResponse(entity: T): ResponseDto {
+		return plainToInstance(this.responseDtoClass, entity);
+	}
 }

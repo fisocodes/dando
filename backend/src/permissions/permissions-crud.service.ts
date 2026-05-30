@@ -32,7 +32,7 @@ export class PermissionsCrudService extends CrudService<
 		dataSource: DataSource,
 		caslAbilityFactory: CaslAbilityFactory,
 	) {
-		super(repository, dataSource, caslAbilityFactory);
+		super(repository, dataSource, caslAbilityFactory, PermissionsResponseDto);
 	}
 
 	async create(
