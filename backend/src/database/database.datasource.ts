@@ -13,7 +13,7 @@ export default new DataSource({
 	database: process.env.DATABASE_NAME,
 	synchronize: false,
 	entities: ["src/**/*.entity.ts"],
-	migrations: ["./migrations/**/*{.js,.ts}"],
+	migrations: ["src/database/migrations/**/*{.js,.ts}"],
 	migrationsRun: false,
 	migrationsTableName: "migrations",
 	migrationsTransactionMode: "all",

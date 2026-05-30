@@ -15,7 +15,7 @@ export class PermissionsPaginationService extends PaginationService<
 		@InjectRepository(Permission)
 		repository: Repository<Permission>,
 	) {
-		super(repository);
+		super(repository, PermissionsResponseDto);
 	}
 
 	toResponse(entity: Permission): PermissionsResponseDto {
