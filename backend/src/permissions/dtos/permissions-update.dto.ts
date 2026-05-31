@@ -1,22 +1,4 @@
-import { MongoQuery } from "@casl/ability";
-import { IsBoolean, IsIn, IsObject, IsOptional } from "class-validator";
-import { CaslAction } from "../../common/casl/constants/casl-action.constant";
-import { CaslSubject } from "../../common/casl/constants/casl-subject.constant";
+import { PartialType } from "@nestjs/swagger";
+import { PermissionsCreateDto } from "./permissions-create.dto";
 
-export class PermissionsUpdateDto {
-	@IsIn(Object.values(CaslAction))
-	@IsOptional()
-	action?: CaslAction;
-
-	@IsIn(Object.values(CaslSubject))
-	@IsOptional()
-	subject?: CaslSubject;
-
-	@IsBoolean()
-	@IsOptional()
-	inverted?: boolean;
-
-	@IsObject()
-	@IsOptional()
-	consditions?: MongoQuery<unknown>;
-}
+export class PermissionsUpdateDto extends PartialType(PermissionsCreateDto) {}

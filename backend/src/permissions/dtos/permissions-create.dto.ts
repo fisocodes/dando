@@ -16,5 +16,5 @@ export class PermissionsCreateDto {
 
 	@IsObject()
 	@IsOptional()
-	consditions?: MongoQuery<unknown>;
+	conditions?: MongoQuery<unknown>;
 }
