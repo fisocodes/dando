@@ -2,9 +2,9 @@ import {
 	CanActivate,
 	ExecutionContext,
 	Injectable,
+	Type,
 	UnauthorizedException,
 } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
 import { CaslAbilityFactory } from "./casl-ability.factory";
 import { CaslAction } from "./constants/casl-action.constant";
 import { CaslSubject } from "./constants/casl-subject.constant";
@@ -17,29 +17,20 @@ const methodActionMap: Record<string, CaslAction> = {
 	DELETE: CaslAction.DELETE,
 };
 
-@Injectable()
-export class CaslGuard implements CanActivate {
-	constructor(
-		private reflector: Reflector,
-		private caslAbilityFactory: CaslAbilityFactory,
-	) {}
+export function CaslGuard(subject: CaslSubject): Type<CanActivate> {
+	@Injectable()
+	class Guard implements CanActivate {
+		constructor(private caslAbilityFactory: CaslAbilityFactory) {}
 
-	canActivate(context: ExecutionContext): boolean {
-		const subject = this.reflector.get<CaslSubject>(
-			"casl_subject",
-			context.getClass(),
-		);
-
-		if (!subject) return true;
-
-		const request = context.switchToHttp().getRequest();
-		const user: CaslUser = request.user;
-
-		if (!user) throw new UnauthorizedException();
-
-		const action = methodActionMap[request.method];
-		const ability = this.caslAbilityFactory.createForUser(user);
-
-		return ability.can(action, subject);
+		canActivate(context: ExecutionContext): boolean {
+			const request = context.switchToHttp().getRequest();
+			const user: CaslUser = request.user;
+			if (!user) throw new UnauthorizedException();
+			const action = methodActionMap[request.method];
+			const ability = this.caslAbilityFactory.createForUser(user);
+			return ability.can(action, subject);
+		}
 	}
+
+	return Guard;
 }

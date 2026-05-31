@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { FindOptionsWhere, Like, Repository } from "typeorm";
-import { PaginationService } from "../common/services/pagination.service";
-import { RolesResponseDto } from "./dtos/roles-response.dto";
-import { Role } from "./roles.entity";
+import { PaginationService } from "../../common/services/pagination.service";
+import { RolesResponseDto } from "../dtos/roles-response.dto";
+import { Role } from "../roles.entity";
 
 @Injectable()
 export class RolesPaginationService extends PaginationService<

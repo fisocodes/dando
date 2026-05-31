@@ -1,15 +1,21 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CaslModule } from "../common/casl/casl.module";
-import { PermissionsController } from "./permissions.controller";
+import { PermissionsCrudController } from "./controllers/permissions-crud.controller";
+import { PermissionsPaginationController } from "./controllers/permissions-pagination.controller";
 import { Permission } from "./permissions.entity";
-import { PermissionsCrudService } from "./permissions-crud.service";
-import { PermissionsPaginationService } from "./permissions-pagination.service";
+import { PermissionsCrudService } from "./services/permissions-crud.service";
+import { PermissionsPaginationService } from "./services/permissions-pagination.service";
+import { PermissionsQueryService } from "./services/permissions-query.service";
 
 @Module({
 	imports: [TypeOrmModule.forFeature([Permission]), CaslModule],
-	controllers: [PermissionsController],
-	providers: [PermissionsCrudService, PermissionsPaginationService],
-	exports: [PermissionsCrudService],
+	controllers: [PermissionsPaginationController, PermissionsCrudController],
+	providers: [
+		PermissionsCrudService,
+		PermissionsPaginationService,
+		PermissionsQueryService,
+	],
+	exports: [PermissionsQueryService],
 })
 export class PermissionsModule {}
