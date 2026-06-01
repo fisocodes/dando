@@ -3,6 +3,7 @@ import { ConfigurationModule } from "./configuration/configuration.module";
 import { DatabaseModule } from "./database/database.module";
 import { PermissionsModule } from "./permissions/permissions.module";
 import { RolesModule } from "./roles/roles.module";
+import { RolesPermissionsModule } from "./roles-permissions/roles-permissions.module";
 import { UsersModule } from "./users/users.module";
 
 @Module({
@@ -11,6 +12,7 @@ import { UsersModule } from "./users/users.module";
 		DatabaseModule,
 		PermissionsModule,
 		RolesModule,
+		RolesPermissionsModule,
 		UsersModule,
 	],
 })
