@@ -3,5 +3,6 @@ export const CaslSubject = {
 	ROLES: "roles",
 	PERMISSIONS: "permissions",
 	ROLES_PERMISSIONS: "roles_permissions",
+	USERS_ROLES: "users_roles",
 } as const;
 export type CaslSubject = (typeof CaslSubject)[keyof typeof CaslSubject];
