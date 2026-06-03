@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigurationModule } from "./configuration/configuration.module";
 import { DatabaseModule } from "./database/database.module";
+import { OtpModule } from "./otp/otp.module";
 import { PermissionsModule } from "./permissions/permissions.module";
 import { RolesModule } from "./roles/roles.module";
 import { RolesPermissionsModule } from "./roles-permissions/roles-permissions.module";
@@ -11,6 +12,7 @@ import { UsersRolesModule } from "./users-roles/users-roles.module";
 	imports: [
 		ConfigurationModule,
 		DatabaseModule,
+		OtpModule,
 		PermissionsModule,
 		RolesModule,
 		RolesPermissionsModule,

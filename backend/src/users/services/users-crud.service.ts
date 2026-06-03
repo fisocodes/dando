@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Not, Repository } from "typeorm";
@@ -25,7 +26,7 @@ export class UsersCrudService extends CrudService<
 
 	async create(dto: UsersCreateDto): Promise<UsersResponseDto> {
 		await this.queryService.throwIfConflictsWith({ email: dto.email });
-		const newEntity = this.repository.create(dto);
+		const newEntity = this.repository.create({ ...dto, secret: randomUUID() });
 		const savedEntity = await this.repository.save(newEntity);
 		return this.toResponse(savedEntity);
 	}

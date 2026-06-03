@@ -5,4 +5,7 @@ import { BaseEntity } from "../common/entities/base.entity";
 export class User extends BaseEntity {
 	@Column({ unique: true })
 	email!: string;
+
+	@Column({ unique: true })
+	secret!: string;
 }

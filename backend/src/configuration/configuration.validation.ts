@@ -40,7 +40,7 @@ export class EnvironmentVariables {
 	SMTP_HOST!: string;
 
 	@IsPort()
-	SMTP_PORT!: number;
+	SMTP_PORT!: string;
 
 	@IsString()
 	@IsNotEmpty()
@@ -52,6 +52,16 @@ export class EnvironmentVariables {
 
 	@IsEmail()
 	SMTP_FROM!: string;
+
+	@IsInt()
+	OTP_TTL_MS!: number;
+
+	@IsInt()
+	OTP_LENGTH!: number;
+
+	@IsString()
+	@IsNotEmpty()
+	OTP_ALPHABET!: string;
 }
 
 export function validate(config: Record<string, unknown>) {

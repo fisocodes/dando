@@ -55,4 +55,16 @@ export class ConfigurationService {
 	get smtpFrom(): string {
 		return this.configService.get("SMTP_FROM");
 	}
+
+	get otpTtlMs(): number {
+		return this.configService.get("OTP_TTL_MS");
+	}
+
+	get otpLength(): number {
+		return this.configService.get("OTP_LENGTH");
+	}
+
+	get otpAlphabet(): string {
+		return this.configService.get("OTP_ALPHABET");
+	}
 }
