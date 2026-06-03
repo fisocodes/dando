@@ -29,12 +29,12 @@ export class OtpCrudService extends CrudService<
 		super(repository, queryService, OtpResponseDto);
 	}
 
-	async create(dto: OtpCreateDto): Promise<OtpResponseDto> {
-		const user = await this.usersQueryService.findOneByOrThrow({
-			id: dto.userId,
-		});
+	async generate(
+		userId: string,
+	): Promise<{ otp: OtpResponseDto; plainCode: string }> {
+		const user = await this.usersQueryService.findOneByOrThrow({ id: userId });
 
-		const existing = await this.queryService.findManyBy({ userId: dto.userId });
+		const existing = await this.queryService.findManyBy({ userId });
 		if (existing.length > 0) await this.repository.softRemove(existing);
 
 		const { otpLength, otpAlphabet, otpTtlMs } = this.configurationService;
@@ -47,14 +47,15 @@ export class OtpCrudService extends CrudService<
 			.digest("hex");
 		const expiresAt = new Date(Date.now() + otpTtlMs);
 
-		const entity = this.repository.create({
-			userId: dto.userId,
-			code,
-			expiresAt,
-		});
+		const entity = this.repository.create({ userId, code, expiresAt });
 		const saved = await this.repository.save(entity);
 
-		return plainToInstance(OtpResponseDto, saved);
+		return { otp: plainToInstance(OtpResponseDto, saved), plainCode };
+	}
+
+	async create(dto: OtpCreateDto): Promise<OtpResponseDto> {
+		const { otp } = await this.generate(dto.userId);
+		return otp;
 	}
 
 	async update(id: string, dto: OtpUpdateDto): Promise<OtpResponseDto> {

@@ -67,4 +67,8 @@ export class ConfigurationService {
 	get otpAlphabet(): string {
 		return this.configService.get("OTP_ALPHABET");
 	}
+
+	get jwtExpiry(): string {
+		return this.configService.get("JWT_EXPIRY");
+	}
 }

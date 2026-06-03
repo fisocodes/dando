@@ -19,6 +19,6 @@ import { OtpQueryService } from "./services/otp-query.service";
 	],
 	controllers: [OtpPaginationController, OtpCrudController],
 	providers: [OtpCrudService, OtpPaginationService, OtpQueryService],
-	exports: [OtpQueryService],
+	exports: [OtpQueryService, OtpCrudService],
 })
 export class OtpModule {}

@@ -62,6 +62,10 @@ export class EnvironmentVariables {
 	@IsString()
 	@IsNotEmpty()
 	OTP_ALPHABET!: string;
+
+	@IsString()
+	@IsNotEmpty()
+	JWT_EXPIRY!: string;
 }
 
 export function validate(config: Record<string, unknown>) {
