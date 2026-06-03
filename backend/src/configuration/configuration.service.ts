@@ -35,4 +35,24 @@ export class ConfigurationService {
 	get databaseName(): string {
 		return this.configService.get("DATABASE_NAME");
 	}
+
+	get smtpHost(): string {
+		return this.configService.get("SMTP_HOST");
+	}
+
+	get smtpPort(): number {
+		return this.configService.get("SMTP_PORT");
+	}
+
+	get smtpUser(): string {
+		return this.configService.get("SMTP_USER");
+	}
+
+	get smtpPassword(): string {
+		return this.configService.get("SMTP_PASSWORD");
+	}
+
+	get smtpFrom(): string {
+		return this.configService.get("SMTP_FROM");
+	}
 }

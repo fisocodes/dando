@@ -12,6 +12,7 @@
 		"rootDir": "./",
 		"skipLibCheck": true,
 		"incremental": true,
-		"types": ["node"]
+		"types": ["node"],
+		"jsx": "react-jsx"
 	}
 }

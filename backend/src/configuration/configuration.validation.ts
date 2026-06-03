@@ -1,7 +1,10 @@
 import { plainToInstance } from "class-transformer";
 import {
+	IsEmail,
+	IsFQDN,
 	IsInt,
 	IsNotEmpty,
+	IsPort,
 	IsString,
 	Matches,
 	validateSync,
@@ -32,6 +35,23 @@ export class EnvironmentVariables {
 	@IsString()
 	@IsNotEmpty()
 	DATABASE_NAME!: string;
+
+	@IsFQDN()
+	SMTP_HOST!: string;
+
+	@IsPort()
+	SMTP_PORT!: number;
+
+	@IsString()
+	@IsNotEmpty()
+	SMTP_USER!: string;
+
+	@IsString()
+	@IsNotEmpty()
+	SMTP_PASSWORD!: string;
+
+	@IsEmail()
+	SMTP_FROM!: string;
 }
 
 export function validate(config: Record<string, unknown>) {
