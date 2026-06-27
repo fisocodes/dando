@@ -12,6 +12,6 @@ import { User } from "./users.entity";
 	imports: [TypeOrmModule.forFeature([User]), CaslModule],
 	controllers: [UsersPaginationController, UsersCrudController],
 	providers: [UsersPaginationService, UsersCrudService, UsersQueryService],
-	exports: [UsersQueryService],
+	exports: [UsersQueryService, UsersCrudService],
 })
 export class UsersModule {}

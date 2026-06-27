@@ -12,6 +12,6 @@ import { RolesQueryService } from "./services/roles-query.service";
 	imports: [TypeOrmModule.forFeature([Role]), CaslModule],
 	controllers: [RolesPaginationController, RolesCrudController],
 	providers: [RolesCrudService, RolesPaginationService, RolesQueryService],
-	exports: [RolesQueryService],
+	exports: [RolesQueryService, RolesCrudService],
 })
 export class RolesModule {}

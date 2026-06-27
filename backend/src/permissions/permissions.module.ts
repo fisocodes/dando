@@ -16,6 +16,6 @@ import { PermissionsQueryService } from "./services/permissions-query.service";
 		PermissionsPaginationService,
 		PermissionsQueryService,
 	],
-	exports: [PermissionsQueryService],
+	exports: [PermissionsQueryService, PermissionsCrudService],
 })
 export class PermissionsModule {}

@@ -7,6 +7,7 @@ import { OtpModule } from "./otp/otp.module";
 import { PermissionsModule } from "./permissions/permissions.module";
 import { RolesModule } from "./roles/roles.module";
 import { RolesPermissionsModule } from "./roles-permissions/roles-permissions.module";
+import { SeederModule } from "./seeder/seeder.module";
 import { UsersModule } from "./users/users.module";
 import { UsersRolesModule } from "./users-roles/users-roles.module";
 
@@ -22,6 +23,7 @@ import { UsersRolesModule } from "./users-roles/users-roles.module";
 		RolesPermissionsModule,
 		UsersModule,
 		UsersRolesModule,
+		SeederModule,
 	],
 })
 export class AppModule {}

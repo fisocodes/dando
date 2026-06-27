@@ -71,4 +71,8 @@ export class ConfigurationService {
 	get jwtExpiry(): string {
 		return this.configService.get("JWT_EXPIRY");
 	}
+
+	get adminEmail(): string {
+		return this.configService.get("ADMIN_EMAIL");
+	}
 }

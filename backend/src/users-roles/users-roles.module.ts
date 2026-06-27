@@ -16,6 +16,6 @@ import { UserRole } from "./users-roles.entity";
 		UsersRolesPaginationService,
 		UsersRolesQueryService,
 	],
-	exports: [UsersRolesQueryService],
+	exports: [UsersRolesQueryService, UsersRolesCrudService],
 })
 export class UsersRolesModule {}

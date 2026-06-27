@@ -30,6 +30,7 @@ describe("ConfigurationService", () => {
 		["otpLength", "OTP_LENGTH", 6],
 		["otpAlphabet", "OTP_ALPHABET", "ABCDEF"],
 		["jwtExpiry", "JWT_EXPIRY", "1h"],
+		["adminEmail", "ADMIN_EMAIL", "admin@example.com"],
 	] as [
 		string,
 		string,

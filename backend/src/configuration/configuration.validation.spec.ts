@@ -18,6 +18,7 @@ const validConfig: Record<string, string> = {
 	OTP_LENGTH: "6",
 	OTP_ALPHABET: "ABCDEF",
 	JWT_EXPIRY: "1h",
+	ADMIN_EMAIL: "admin@example.com",
 };
 
 describe("configuration validate()", () => {
@@ -55,6 +56,17 @@ describe("configuration validate()", () => {
 
 	it("should throw when JWT_EXPIRY is missing", () => {
 		const { JWT_EXPIRY: _, ...rest } = validConfig;
+		expect(() => validate(rest)).toThrow();
+	});
+
+	it("should throw when ADMIN_EMAIL is not a valid email", () => {
+		expect(() =>
+			validate({ ...validConfig, ADMIN_EMAIL: "not-an-email" }),
+		).toThrow();
+	});
+
+	it("should throw when ADMIN_EMAIL is missing", () => {
+		const { ADMIN_EMAIL: _, ...rest } = validConfig;
 		expect(() => validate(rest)).toThrow();
 	});
 });

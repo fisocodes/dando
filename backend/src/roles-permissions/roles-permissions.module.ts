@@ -19,6 +19,6 @@ import { RolesPermissionsQueryService } from "./services/roles-permissions-query
 		RolesPermissionsPaginationService,
 		RolesPermissionsQueryService,
 	],
-	exports: [RolesPermissionsQueryService],
+	exports: [RolesPermissionsQueryService, RolesPermissionsCrudService],
 })
 export class RolesPermissionsModule {}
