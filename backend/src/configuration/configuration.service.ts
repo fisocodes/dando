@@ -36,4 +36,16 @@ export class ConfigurationService {
 	get databaseUsername(): string {
 		return this.configService.get("DATABASE_USERNAME");
 	}
+
+	get redisHost(): string {
+		return this.configService.get("REDIS_HOST");
+	}
+
+	get redisPort(): number {
+		return this.configService.get("REDIS_PORT");
+	}
+
+	get redisPassword(): string {
+		return this.configService.get("REDIS_PASSWORD");
+	}
 }

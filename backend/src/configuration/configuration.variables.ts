@@ -45,4 +45,18 @@ export class ConfigurationVariables {
 	@IsString()
 	@IsNotEmpty()
 	DATABASE_PASSWORD!: string;
+
+	@Type(() => Number)
+	@IsNumber()
+	@Min(1)
+	@Max(65_535)
+	REDIS_PORT!: number;
+
+	@IsString()
+	@IsNotEmpty()
+	REDIS_HOST!: string;
+
+	@IsString()
+	@IsNotEmpty()
+	REDIS_PASSWORD!: string;
 }
