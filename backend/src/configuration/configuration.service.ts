@@ -48,4 +48,28 @@ export class ConfigurationService {
 	get redisPassword(): string {
 		return this.configService.get("REDIS_PASSWORD");
 	}
+
+	get smtpHost(): string {
+		return this.configService.get("SMTP_HOST");
+	}
+
+	get smtpPort(): number {
+		return this.configService.get("SMTP_PORT");
+	}
+
+	get smtpSecure(): boolean {
+		return this.configService.get("SMTP_SECURE");
+	}
+
+	get smtpUser(): string {
+		return this.configService.get("SMTP_USER");
+	}
+
+	get smtpPassword(): string {
+		return this.configService.get("SMTP_PASSWORD");
+	}
+
+	get smtpFrom(): string {
+		return this.configService.get("SMTP_FROM");
+	}
 }

@@ -11,14 +11,22 @@
 		"bullmq": "^6.3.15",
 		"class-transformer": "^0.5.1",
 		"class-validator": "^0.15.1",
+		"ioredis": "^5.11.1",
+		"nodemailer": "^10.1.1",
 		"pg": "^8.23.1",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
+		"react-email": "^6.11.2",
 		"reflect-metadata": "^0.2.2",
 		"typeorm": "^1.1.2"
 	},
 	"devDependencies": {
 		"@nestjs/cli": "^12.0.8",
 		"@nestjs/schematics": "^12.0.7",
+		"@react-email/ui": "^6.11.2",
 		"@types/node": "^26.6.5",
+		"@types/nodemailer": "^8.0.2",
+		"@types/react": "^19.3.0",
 		"ts-node": "^10.9.2",
 		"typescript": "^6.0.3"
 	},
@@ -29,7 +37,8 @@
 		"start:prod": "node .",
 		"migration:generate": "typeorm-ts-node-commonjs migration:generate src/database/migrations/$npm_config_name -d src/database/database.datasource.ts",
 		"migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/database/database.datasource.ts",
-		"migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/database.datasource.ts"
+		"migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/database.datasource.ts",
+		"email:dev": "email dev --dir src/mailer/templates"
 	},
 	"type": "commonjs"
 }

@@ -1,5 +1,7 @@
 import { Type } from "class-transformer";
 import {
+	IsBoolean,
+	IsEmail,
 	IsNotEmpty,
 	IsNumber,
 	IsString,
@@ -59,4 +61,31 @@ export class ConfigurationVariables {
 	@IsString()
 	@IsNotEmpty()
 	REDIS_PASSWORD!: string;
+
+	@IsString()
+	@IsNotEmpty()
+	SMTP_HOST!: string;
+
+	@Type(() => Number)
+	@IsNumber()
+	@Min(1)
+	@Max(65_535)
+	SMTP_PORT!: number;
+
+	@Type(() => Boolean)
+	@IsBoolean()
+	SMTP_SECURE!: boolean;
+
+	@IsString()
+	@IsNotEmpty()
+	SMTP_USER!: string;
+
+	@IsString()
+	@IsNotEmpty()
+	SMTP_PASSWORD!: string;
+
+	@IsEmail()
+	@IsString()
+	@IsNotEmpty()
+	SMTP_FROM!: string;
 }
