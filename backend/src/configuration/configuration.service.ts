@@ -13,6 +13,10 @@ export class ConfigurationService {
 		return this.configService.get("APP_PORT");
 	}
 
+	get appVersion(): string {
+		return this.configService.get("APP_VERSION");
+	}
+
 	get databaseHost(): string {
 		return this.configService.get("DATABASE_HOST");
 	}

@@ -1,5 +1,12 @@
 import { Type } from "class-transformer";
-import { IsNotEmpty, IsNumber, IsString, Max, Min } from "class-validator";
+import {
+	IsNotEmpty,
+	IsNumber,
+	IsString,
+	Matches,
+	Max,
+	Min,
+} from "class-validator";
 
 export class ConfigurationVariables {
 	@Type(() => Number)
@@ -7,6 +14,15 @@ export class ConfigurationVariables {
 	@Min(1)
 	@Max(65_535)
 	APP_PORT!: number;
+
+	@IsString()
+	@Matches(
+		/^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<fix>0|[1-9]\d*)$/u,
+		{
+			message: "version must be in the format major.minor.fix (e.g. 1.4.2)",
+		},
+	)
+	APP_VERSION: string;
 
 	@Type(() => Number)
 	@IsNumber()
