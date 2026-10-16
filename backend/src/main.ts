@@ -1,3 +1,4 @@
+import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
@@ -18,6 +19,7 @@ async function bootstrap() {
 	const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
 
 	app.use("/reference", apiReference({ content: swaggerDocument }));
+	app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 	await app.listen(configurationService.appPort);
 }
 bootstrap();

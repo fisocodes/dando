@@ -39,7 +39,10 @@
 			"includes": ["backend/**"],
 			"linter": {
 				"rules": {
-					"style": { "useImportType": "off" }
+					"style": { "useImportType": "off" },
+					"correctness": {
+						"useHookAtTopLevel": "off"
+					}
 				}
 			}
 		}
