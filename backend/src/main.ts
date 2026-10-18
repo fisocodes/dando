@@ -11,14 +11,20 @@ async function bootstrap() {
 	const configurationService = app.get(ConfigurationService);
 
 	const swaggerConfig = new DocumentBuilder()
-		.setTitle("Dando API")
-		.setDescription("Dando API documentation")
+		.setTitle("Dando API reference")
+		.setDescription("Dando API reference")
 		.setVersion(configurationService.appVersion)
 		.build();
 
 	const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
 
-	app.use("/reference", apiReference({ content: swaggerDocument }));
+	app.use(
+		"/reference",
+		apiReference({
+			content: swaggerDocument,
+			pageTitle: "Dando API reference",
+		}),
+	);
 	app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 	await app.listen(configurationService.appPort);
 }
